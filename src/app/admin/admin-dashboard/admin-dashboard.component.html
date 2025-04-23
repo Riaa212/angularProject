@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Theme Dashboard</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #121212;
+      color: #fff;
+      transition: all 0.3s ease;   
+      /* overflow: hidden;  */
+    }
+
+    /* Top Navigation Bar */
+    .navbar {
+      background-color: #34acf1;
+      padding: 15px;
+      /* position: fixed; */
+      width: 100%;
+      /* top: 0;
+      left: 0; */
+      /* z-index: 10; */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 10px;
+      border-radius: 5px;
+      /* transition: background-color 0.3s ease, transform 0.3s ease; */
+    }
+
+    .navbar a:hover {
+      background-color: #fff;
+      color: black;
+      transform: scale(1.1);
+    }
+
+    /* Container for content */
+    .container {
+      width: 100%;
+      margin-top: 100px;
+      margin: 30px auto;
+      /* animation: fadeIn 1s ease-in-out; */
+      height: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Table Styles */
+    .table-container {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      /* animation: slideIn 1s ease-in-out; */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    th {
+      background-color: #444;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #333;
+    }
+
+    tr{
+        font-size: 18px;
+    }
+
+    tr:hover {
+      background-color: #555;
+      cursor: pointer;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .edit-btn {
+      background-color: #34acf1;
+      color: white;
+      font-size: 18px;
+    }
+
+    .delete-btn {
+      background-color: #444;
+      border: 1px solid white;
+      color: white;
+      font-size: 18px;
+    }
+
+    .edit-btn:hover {
+      background-color: #34acf1;
+      transform: scale(1.05);
+    }
+
+    .delete-btn:hover {
+      background-color: white;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#" routerLink="/adminProfile">Profile</a></li>
+      <li>
+        <a href="#" class="btn-link" (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <div class="table-container">
+        <h2>Registered Users</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let user of userData.content">
+            <td>{{user.id}}</td>
+            <td>{{user.userName}}</td>
+            <td>{{user.email}}</td>
+            <td>
+              <button class="edit-btn"><a href="#" [routerLink]="['/updateUser',user.id]" class="text-light text-decoration-none">Edit</a></button>
+              <button class="delete-btn" (click)="deleteById(user.id)">Delete</button>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td>2</td>
+            <td>Jane Smith</td>
+            <td>jane.smithexample.com</td>
+            <td>
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+            </td>
+          </tr> -->
+          <!-- <tr>
+            <td>3</td>
+            <td>Michael Brown</td>
+            <td>michael.brownexample.com</td>
+            <td>
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+  <nav aria-label="Page navigation example" class="page" >
+    <ul class="pagination d-flex justify-content-center">
+      <li class="page-item">
+      <button type="submit" (click)="Onprevious()" class="btn onPrevious-btn bg-light" [class.disabled]="pageIndex == 0"
+        style="border: none;">
+        Previous
+      </button>
+    </li>
+      <li class="page-item"><a class="page-link active" href="#">{{pageIndex + 1 }} of  {{userData.totalPages}}</a></li>
+      <li class="page-item">
+      <button type="submit" class="btn onNext-btn bg-light" style="border: none;" (click)="OnNext()" 
+       [class.disabled]="userData.last==true">
+        Next
+      </button>
+      <!-- [class.disabled]="userData.last==true" -->
+      </li>
+    </ul>
+  </nav>
+  <!-- <p style="color: white;">{{userData | json}}</p> -->
+  <!-- <div *ngFor="let user of userData">
+    <p>{{user.u}}</p>
+  </div> -->
+</body>
+</html>

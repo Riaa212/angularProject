@@ -1,0 +1,14 @@
+{
+    "/user":{
+        "target":"http://localhost:2424",
+        "secure":false,
+        "changeOrigin":true,
+        "logLevel":"debug"
+    },
+    "/admin":{
+        "target":"http://localhost:2424",
+        "secure":false,
+        "changeOrigin":true,
+        "logLevel":"debug"
+    }
+}

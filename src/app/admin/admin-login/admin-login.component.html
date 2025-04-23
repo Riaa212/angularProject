@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Profile</title>
+  <style>
+
+.navbar {
+      background-color: #34acf1;
+      padding: 15px;
+      /* position: fixed; */
+      width: 100%;
+      /* top: 0;
+      left: 0; */
+      /* z-index: 10; */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 10px;
+      border-radius: 5px;
+      /* transition: background-color 0.3s ease, transform 0.3s ease; */
+    }
+
+    .navbar a:hover {
+      background-color: #fff;
+      color: black;
+      transform: scale(1.1);
+    }
+    /* Edit Profile Section */
+    .edit-profile-container {
+      width: 50%;
+      margin: 40px auto;
+      padding: 50px;
+      background-color: #2e2e2e;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .edit-profile-container h2 {
+      text-align: center;
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .edit-profile-container label {
+      font-size: 16px;
+      color:white;
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .edit-profile-container input[type="password"],
+    .edit-profile-container input[type="email"],
+    .edit-profile-container input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #444;
+      border: 1px solid #666;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .edit-profile-container input[type="file"] {
+      padding: 5px;
+    }
+
+    /* Button Styles */
+    .edit-profile-container button {
+      width: auto;
+      padding: 12px;
+      background-color: #34acf1;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      /* transition: background-color 0.3s ease, transform 0.2s ease; */
+    }
+
+    .edit-profile-container button:hover {
+      background-color: #34acf1;
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <ul>
+      <li><a href="#" routerLink="/dashboard">Home</a></li>
+      <!-- <li><a href="#">Settings</a></li> -->
+    </ul>
+  </div>
+
+  <!-- Edit Profile Section -->
+  <div class="edit-profile-container">
+    <h2>Admin Login </h2>
+    <form id="editProfileForm" [formGroup]="loginForm" (ngSubmit)="submitData()">
+      <label for="editName">Email</label>
+      <input type="email" id="editName"  placeholder="Enter your email" formControlName="email">
+
+      <label for="editEmail">Password</label>
+      <input type="password" id="editEmail" name="email" placeholder="Enter your Password" formControlName="password">
+
+      <!-- <label for="editProfilePic">Profile Picture</label>
+      <input type="file" id="editProfilePic" name="profilePic"> -->
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>
+
