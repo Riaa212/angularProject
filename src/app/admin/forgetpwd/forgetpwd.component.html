@@ -1,9 +1,27 @@
-<p>forgetpwd works!</p>
+<!-- <p class="text-light">forgetpwd</p> -->
 
-<p class="text-light">{{otpdata}}</p>
+<!-- <p class="text-light">{{otpdata}}</p> -->
 
-<form [formGroup]="inputData" (ngSubmit)="verifyOtp()">
-    <input type="text" formControlName="otp">
-    <input type="text" formControlName="password">
-    <button type="btn btn-primary">Submit</button>
-</form>
+<div class="container">
+    <div class="row p-5">
+      <form [formGroup]="adminEmail" (ngSubmit)="sentOtp()">
+          <p>
+              <input type="email" formControlName="email" class="form-control" placeholder="enter email" style="width: 200px;">
+          </p>
+          <p>
+              <button class="btn btn-primary">Generate Otp</button>
+          </p>
+      </form>
+
+    <form [formGroup]="inputData" (ngSubmit)="verifyOtp()">
+        <p>
+        <input type="text" formControlName="otp" class="form-control" placeholder="enter otp" style="width: 200px;" [(ngModel)]="otpdata">
+    </p>
+    <p>
+        <input type="password" formControlName="password" class="form-control" placeholder="enter password" style="width: 200px;">
+    </p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</div>
+<!-- <p class="text-light">{{adminEmail}}</p> -->

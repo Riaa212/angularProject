@@ -40,6 +40,8 @@ export class UpdateUserComponent {
     
     console.log(this.inputData.value)
     this.userservice.updateUserById(this.userId,this.inputData.value).subscribe()
+    alert('user updated succefully')
+    this.route.navigate(['/dashboard'])
   }
 
 }

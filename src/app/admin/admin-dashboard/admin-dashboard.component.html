@@ -188,21 +188,49 @@
     <h1>Admin Dashboard</h1>
     <div class="table-container">
         <h2>Registered Users</h2>
+        <h5>Total Users: {{userData.totalElements}}</h5>
+        <h3>Total Record: {{pageSize}}</h3>
+  
+        <div class="d-flex">
+          <input type="text" placeholder="search users" class="form-control w-50" [(ngModel)]="searchUserData">
+          <button  class="btn btn-primary" (click)="searchUser()">Search</button>
+        </div>
       <table>
         <thead>
           <tr>
             <th>ID</th>
+            <th>Img</th>
             <th>Name</th>
             <th>Email</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody >
+          <!-- <tr><input type="text" class="w-100 form-control"></tr> -->
           <tr *ngFor="let user of userData.content">
             <td>{{user.id}}</td>
+            <td>
+            
+              <ng-container *ngIf="user.userImg else aliasBlock">
+                <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt="">
+                <!-- <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt=""> -->
+                <!-- <img [src]="'data:image/png;base64,' + s.fileData" alt="profile" class="avatar-img" (error)="s.fileData = null" /> -->
+              </ng-container>
+              <ng-template #aliasBlock>
+                <div class="avatar-fallback">
+                  {{ getInitials(user.userName) }}
+                </div>
+              </ng-template>
+
+            </td>
+            
+            
+
             <td>{{user.userName}}</td>
             <td>{{user.email}}</td>
             <td>
+              <!-- viewUser -->
+              <button class="edit-btn"><a href="#" [routerLink]="['/viewUser',user.id]" class="text-light text-decoration-none">View</a></button>
               <button class="edit-btn"><a href="#" [routerLink]="['/updateUser',user.id]" class="text-light text-decoration-none">Edit</a></button>
               <button class="delete-btn" (click)="deleteById(user.id)">Delete</button>
             </td>
@@ -233,12 +261,18 @@
   <nav aria-label="Page navigation example" class="page" >
     <ul class="pagination d-flex justify-content-center">
       <li class="page-item">
+        <p>
+          Total Pages:{{userData.totalPages}}
+        </p>
+      </li>
+      <li class="page-item">
       <button type="submit" (click)="Onprevious()" class="btn onPrevious-btn bg-light" [class.disabled]="pageIndex == 0"
         style="border: none;">
         Previous
       </button>
     </li>
-      <li class="page-item"><a class="page-link active" href="#">{{pageIndex + 1 }} of  {{userData.totalPages}}</a></li>
+    
+      <li class="page-item"><a class="page-link active" href="#">{{pageIndex + 1 }}</a></li>
       <li class="page-item">
       <button type="submit" class="btn onNext-btn bg-light" style="border: none;" (click)="OnNext()" 
        [class.disabled]="userData.last==true">
@@ -254,3 +288,18 @@
   </div> -->
 </body>
 </html>
+<!-- <p class="text-light">
+  {{userData | json}}
+</p> -->
+<p>        {{searchUserData.search}}</p>
+<td>
+
+</td>
+<!-- <ng-container *ngIf="s.fileData; else aliasBlock">
+  <img [src]="'data:image/png;base64,' + s.fileData" alt="profile" class="avatar-img" (error)="s.fileData = null" />
+</ng-container>
+<ng-template #aliasBlock>
+  <div class="avatar-fallback">
+    {{ getInitials(s.username) }}
+  </div>
+</ng-template> -->

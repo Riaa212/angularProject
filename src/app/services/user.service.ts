@@ -19,6 +19,14 @@ export class UserService {
     return this.http.get(this.baseurl+"/getAllUsers",{params})  
   }
 
+  searchUser(name:any,pageNumber:number,pagesize:number)
+  {
+    const params = new HttpParams()
+
+    .set('page', pageNumber.toString())
+    .set('size', pagesize.toString())
+    return this.http.get(this.baseurl+"/getUserByName/"+name,{params}) 
+  }
   getUserById(userId:any)
   {
     return this.http.get(this.baseurl+"/getUserById/"+userId)

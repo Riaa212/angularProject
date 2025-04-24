@@ -13,6 +13,7 @@ import { Interceptor } from './interceptor/interceptor';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AdminProfileComponent,
     AdminDashboardComponent,
     AdminLoginComponent,
-    ForgetpwdComponent
+    ForgetpwdComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,

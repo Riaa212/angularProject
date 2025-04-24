@@ -20,7 +20,8 @@ export class AdminLoginComponent {
   {
     this.loginForm=fb.group({
       email:['',Validators.required],
-      password:['',Validators.required]
+      password:['',Validators.required],
+      
     })
   }
 
@@ -56,9 +57,15 @@ export class AdminLoginComponent {
   {
     if(!this.captchaVerified)
       {
-        // console.log("please complete captcha")
-        alert('please complete captcha')
+        console.log("please complete captcha")
+        // alert('please complete captcha')
         // return;
+      }
+     
+      const payload={
+        email:this.loginForm.value.email,
+        password:this.loginForm.value.password,
+        captcha:this.captchaToken
       }
 
     this.adminService.login(this.loginForm.value).subscribe((rs)=>

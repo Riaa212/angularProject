@@ -5,13 +5,18 @@ import { AdminProfileComponent } from './admin/admin-profile/admin-profile.compo
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { UpdateUserComponent } from './users/update-user/update-user.component';
 import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
+import { authguardGuard } from './authguard.guard';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { ViewUserComponent } from './users/view-user/view-user.component';
 
 const routes: Routes = [
-  {path:'dashboard',component:AdminDashboardComponent},
-  { path:'adminProfile',component:AdminProfileComponent},
+  {path:'dashboard',component:AdminDashboardComponent,canActivate:[authguardGuard]},
+  {path:'adminProfile',component:AdminProfileComponent,canActivate:[authguardGuard]},
   {path:'',component:AdminLoginComponent},
-  {path:'updateUser/:id',component:UpdateUserComponent},
-  {path:'forgetPwd',component:ForgetpwdComponent}
+  {path:'updateUser/:id',component:UpdateUserComponent,canActivate:[authguardGuard]},
+  {path:'forgetPwd',component:ForgetpwdComponent},
+  {path:'viewUser/:id',component:ViewUserComponent,canActivate:[authguardGuard]},
+  {path:'**',component:ErrorpageComponent}
 ];
 
 @NgModule({

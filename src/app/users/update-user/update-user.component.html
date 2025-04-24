@@ -1,6 +1,4 @@
-<p class="text-light">
-    update profile
-</p>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,8 +81,11 @@
 
   <!-- Edit Profile Section -->
   <div class="edit-profile-container">
-    <h2>User Profile</h2>
+    <h2>Update User Profile</h2>
     <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateUserById()">
+      <div>
+        <img [src]="userdata.userImg" alt="">
+      </div>
       <label for="editName">Full Name</label>
       <input type="text" id="editName"  placeholder="Enter your name" formControlName="userName" [(ngModel)]="userdata.userName">
 
@@ -110,6 +111,6 @@
       <button type="submit">Save Changes</button>
     </form>
   </div>
-  <p class="text-light">{{userdata | json}}</p>
+  <!-- <p class="text-light">{{userdata | json}}</p> -->
 </body>
 </html>

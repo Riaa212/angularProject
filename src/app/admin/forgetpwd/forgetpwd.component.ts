@@ -3,6 +3,8 @@ import { UserService } from '../../services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from '../../services/admin.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgetpwd',
@@ -13,27 +15,44 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ForgetpwdComponent {
 
   adminService=inject(AdminService)
-
+  loginstore=inject(LoginService)
+  adminEmail:any
+  route=inject(Router)
   inputData:any
   constructor(private http:HttpClient,private fb:FormBuilder)
   {
-    this.sentOtp("admin@gmail.com");
+    this.adminEmail=this.loginstore.getLoginData("userName");
+    console.log(this.adminEmail)
+    // this.sentOtp("sahil@gmail.com");
     this.inputData=fb.group({
-      email:["admin@gmail.com",Validators.required],
       otp:['',Validators.required],
       password:['',Validators.required]
     })
+    this.adminEmail=fb.group({
+      email:['',Validators.required],
+    })
   }
+
+
   
   otpdata:any
-  sentOtp(email:any)
+
+  sentOtp()
   {
-    this.adminService.sentOtp(email).subscribe((rs)=>this.otpdata=rs)
+    this.adminService.sentOtp(this.adminEmail.value.email).subscribe((rs)=>this.otpdata=rs)
   }
 
   verifyOtp()
   {
-    this.adminService.verifyOtp(this.inputData.value).subscribe()
+    const payload={
+        email:this.adminEmail.value.email,
+        otp:this.inputData.value.otp,
+        password:this.inputData.value.password
+    }
+    // console.log(this.inputData.value)
+    this.adminService.verifyOtp(payload).subscribe((rs)=>console.log(rs))
+    alert('password updated successfully')
+    this.route.navigate([''])
     }
 
 
