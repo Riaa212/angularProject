@@ -86,17 +86,19 @@
     <h2>User Profile</h2>
     <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateUserById()">
       <label for="editName">Full Name</label>
-      <input type="text" id="editName" name="name" placeholder="Enter your name" formControlName="userName" [(ngModel)]="userdata.userName">
+      <input type="text" id="editName"  placeholder="Enter your name" formControlName="userName" [(ngModel)]="userdata.userName">
 
       <label for="editEmail">Email</label>
-      <input type="email" id="editEmail" name="email" placeholder="Enter your email" formControlName="email" [(ngModel)]="userdata.email">
+      <input type="email" id="editEmail" placeholder="Enter your email" formControlName="email" [(ngModel)]="userdata.email">
 
-      <label for="editEmail">Dob:</label>
-      <input type="text"  [value]="userdata.dob">
+      <!-- <label for="editEmail">Dob:</label>
+      <input type="text"  [value]="userdata.dob"> -->
 
       <label for="editEmail">Address</label>
       <input type="text" placeholder="Enter your email" formControlName="address" [(ngModel)]="userdata.address">
 
+      <!-- <label for="editEmail">mobileNumber</label>
+      <input type="text" placeholder="Enter your email" formControlName="address" [(ngModel)]="userdata.mobileNumber"> -->
       
       
       <!-- [(ngModel)]="userdata.email" -->

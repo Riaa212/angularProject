@@ -14,7 +14,8 @@ export class AdminLoginComponent {
   loginForm:any
   loginData:any
   adminService=inject(AdminService)
- route=inject(Router)
+  route=inject(Router)
+  captchaVerified = false;
   constructor(fb:FormBuilder)
   {
     this.loginForm=fb.group({
@@ -23,10 +24,44 @@ export class AdminLoginComponent {
     })
   }
 
+  siteKey = '6LdOASIrAAAAAEqg1SDgiDfzWq-QlHCBT_dyYj4-'; // ✅ Replace with your actual site key
+  
+  // secretKey='6LdOASIrAAAAAIu9Zr6ERoSR-iK58_27UjMkQlei';
+
+  captchaToken: string = '';
+
+  
+  onCaptchaResolved(token: string) {
+    this.captchaToken = token;
+    console.log('CAPTCHA Token: ', token);
+  }
+  handleSuccess(token: string) {
+    this.captchaVerified = true;
+    console.log('CAPTCHA success! Token:', token);
+  }
+
+  handleReset() {
+    console.log('CAPTCHA reset!');
+  }
+
+  handleExpire() {
+    console.log('CAPTCHA expired!');
+  }
+
+  handleLoad() {
+    console.log('CAPTCHA loaded!');
+  }
+
   submitData()
   {
+    if(!this.captchaVerified)
+      {
+        // console.log("please complete captcha")
+        alert('please complete captcha')
+        // return;
+      }
+
     this.adminService.login(this.loginForm.value).subscribe((rs)=>
-    
       {
         if (rs && rs.tocken) {
           // console.log("pay load..........."+payload)
@@ -45,6 +80,5 @@ export class AdminLoginComponent {
          }
       }
     )
-    
   }
 }

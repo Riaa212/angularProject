@@ -1,1 +1,9 @@
 <p>forgetpwd works!</p>
+
+<p class="text-light">{{otpdata}}</p>
+
+<form [formGroup]="inputData" (ngSubmit)="verifyOtp()">
+    <input type="text" formControlName="otp">
+    <input type="text" formControlName="password">
+    <button type="btn btn-primary">Submit</button>
+</form>

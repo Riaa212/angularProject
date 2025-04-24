@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Interceptor } from './interceptor/interceptor';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxCaptchaModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}

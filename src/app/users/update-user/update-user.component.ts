@@ -25,8 +25,8 @@ export class UpdateUserComponent {
       userName:['',Validators.required],
       email:['',Validators.required],
       address:['',Validators.required],
-      mobileNumber:['',Validators.required],
-      pinCode:['',Validators.required]
+      // mobileNumber:['',Validators.required],
+      // pinCode:['',Validators.required]
     });
   }
 
@@ -37,7 +37,9 @@ export class UpdateUserComponent {
 
   updateUserById()
   {
-    // this.userservice.updateUserById()
+    
+    console.log(this.inputData.value)
+    this.userservice.updateUserById(this.userId,this.inputData.value).subscribe()
   }
 
 }

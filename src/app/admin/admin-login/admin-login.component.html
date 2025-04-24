@@ -127,6 +127,15 @@
       <label for="editEmail">Password</label>
       <input type="password" id="editEmail" name="email" placeholder="Enter your Password" formControlName="password">
 
+      <ngx-recaptcha2 #captchaElem
+      [siteKey]="siteKey"
+      (reset)="handleReset()"
+      (expire)="handleExpire()"
+      (load)="handleLoad()"
+      (success)="handleSuccess($event)"
+      [useGlobalDomain]="true"
+      formControlName="recaptcha">
+    </ngx-recaptcha2>
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 

@@ -36,7 +36,7 @@ export class AdminService {
 
  verifyOtp(resetpassword:any)
  {
-  this.http.post(this.baseurl+"/resetpassword",resetpassword)
+  return this.http.post(this.baseurl+"/resetpassword",resetpassword)
  }
 }
 // baseurl="http://localhost:8087/user"

@@ -51,6 +51,7 @@ export class AdminDashboardComponent {
     alert('user deleted successfully')
     location.reload()
   }
+
   Onprevious()
   {
     this.pageIndex--
