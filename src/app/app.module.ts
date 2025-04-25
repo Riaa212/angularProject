@@ -14,6 +14,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
     AdminDashboardComponent,
     AdminLoginComponent,
     ForgetpwdComponent,
-    ErrorpageComponent
+    ErrorpageComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

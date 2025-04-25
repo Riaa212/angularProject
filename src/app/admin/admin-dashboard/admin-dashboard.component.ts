@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../login.service';
 import { UserService } from '../../services/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -25,8 +26,9 @@ export class AdminDashboardComponent {
   previous:number=0
   next:number=0
   searchUserData:string=''
-s: any;
-  constructor(private loginstore:LoginService,private fb:FormBuilder)
+  s: any;
+  searchText: string='';
+  constructor(private loginstore:LoginService,private fb:FormBuilder,private http:HttpClient)
   {
     // this.getAllUsers()
     // console.log(this.userData)
@@ -84,6 +86,31 @@ s: any;
   {
     this.userService.searchUser(this.searchUserData,this.previous,this.pageSize).subscribe(a=>this.userData=a)
   }
+
+  //reset after search
+  reset(){
+    location.reload()
+  }
+
+  //download user reports
+ downlodUserReports()
+ {
+  this.http.get("http://localhost:2424/user/downloadExcelFile",{ responseType: 'blob' }).subscribe((response:Blob)=>{
+    // Extract the filename from the 'Content-Disposition' header (if possible)
+    const filename = 'userdata.xlsx';  // You can use a dynamic approach or extract from the header
+
+    // Create a Blob from the response data
+    const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    // Trigger the file download using FileSaver.js or manual method
+    // saveAs(blob, filename);  // Using FileSaver.js
+    // Or if you don't want FileSaver.js, use this instead:
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+  })
+}
 
   updateAdminData()
   {

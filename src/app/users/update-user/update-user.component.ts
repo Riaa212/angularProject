@@ -16,6 +16,7 @@ export class UpdateUserComponent {
   inputData:any
   route=inject(Router)
   userId:any
+  
   constructor(private activeroute:ActivatedRoute,private fb:FormBuilder)
   {
     this.userId=activeroute.snapshot.paramMap.get('id');

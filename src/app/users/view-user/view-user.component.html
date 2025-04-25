@@ -14,14 +14,14 @@
       width: 50%;
       margin: 40px auto;
       padding: 50px;
-      background-color: #2e2e2e;
+      background-color: #fff;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
     .edit-profile-container h2 {
       text-align: center;
-      color: #fff;
+      color: black;
       font-size: 28px;
       margin-bottom: 20px;
     }
@@ -39,10 +39,10 @@
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      background-color: #444;
-      border: 1px solid #666;
+      background-color: white;
+      border: 1px solid #adadad;
       border-radius: 5px;
-      color: #fff;
+      color: black;
       font-size: 16px;
     }
 
@@ -73,7 +73,7 @@
 <body>
 
   <!-- Navbar -->
-  <div class="navbar">
+  <div class="navbar bg-primary">
     <ul>
       <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
       <li><a href="#">logout</a></li>
@@ -82,11 +82,25 @@
 
   <!-- Edit Profile Section -->
   <div class="edit-profile-container">
-    <h2>Update User Profile</h2>
+    <a href="" class="text-dark" routerLink="/dashboard">Back</a>
+    <h2>User Profile</h2>
     <form id="editProfileForm">
-      <div>
-        <img [src]="userdata.userImg" alt="">
-      </div>
+      <!-- <div class="text-center">
+        <img [src]="userdata.userImg" alt="" class="img-thumbnail" style="border-radius: 30px;height: 250px;width: 250px;">
+      </div> -->
+      <div class="text-center w-100">
+      <ng-container *ngIf="userdata.userImg else aliasBlock">
+        <img [src]="userdata.userImg" style="border-radius: 30px;height: 250px;width: 250px;" class="img-thumbnail" alt="">
+        <!-- <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt=""> -->
+        <!-- <img [src]="'data:image/png;base64,' + s.fileData" alt="profile" class="avatar-img" (error)="s.fileData = null" /> -->
+      </ng-container>
+      <ng-template #aliasBlock>
+        <div class="avatar-fallback">
+          {{ getInitials(userdata.userName) }}
+        </div>
+      </ng-template>
+    </div>
+
       <label for="editName">Full Name</label>
       <input type="text" id="editName"  placeholder="Enter your name" [value]="userdata.userName" readonly>
 

@@ -1,0 +1,28 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { filter } from 'rxjs';
+
+@Pipe({
+  name: 'filter',
+  standalone: false
+})
+export class FilterPipe implements PipeTransform {
+
+  transform(value?: any, args?: any): any {
+    if(!value)
+      return null;
+    if(!args)
+      return value;
+    // return null;
+
+  
+  args=args.toUpperCase();
+ console.log("args"+args)
+//  console.log("value=="+value)
+  return value.filter(
+    function(item:any){
+      // return item.toLowerCase().includes(args)
+    return JSON.stringify(item).toLowerCase().includes(args);
+  });
+  }
+
+}

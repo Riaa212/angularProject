@@ -27,6 +27,13 @@ export class UserService {
     .set('size', pagesize.toString())
     return this.http.get(this.baseurl+"/getUserByName/"+name,{params}) 
   }
+  downloadUserReport():Observable<Blob>
+  {
+    // { responseType: 'blob' }
+    // { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
+  const blob = new Blob([], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  return this.http.get<Blob>(this.baseurl+"/downloadExcelFile")
+  }
   getUserById(userId:any)
   {
     return this.http.get(this.baseurl+"/getUserById/"+userId)

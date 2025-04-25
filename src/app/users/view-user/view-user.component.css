@@ -1,6 +1,6 @@
     /* Top Navigation Bar */
     .navbar {
-        background-color: #34acf1;
+        /* background-color: #34acf1; */
         padding: 15px;
         /* position: fixed; */
         width: 100%;
@@ -38,3 +38,27 @@
         color: black;
         transform: scale(1.1);
       }
+
+      .avatar-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 0 5px rgba(0, 132, 255, 0.6);
+      }
+      
+      .avatar-fallback {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #ddf7fd;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 20px;
+        text-transform: uppercase;
+        box-shadow: 0 0 5px rgba(57, 157, 252, 0.6);
+      }
+      

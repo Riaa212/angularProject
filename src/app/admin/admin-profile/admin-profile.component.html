@@ -1,77 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
   <!-- <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <!-- <title>Edit Profile - Dark Theme</title> -->
-  <style>
 
-
-    /* Edit Profile Section */
-    .edit-profile-container {
-      width: 50%;
-      margin: 40px auto;
-      padding: 50px;
-      background-color: #2e2e2e;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .edit-profile-container h2 {
-      text-align: center;
-      color: #fff;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .edit-profile-container label {
-      font-size: 16px;
-      color: #bbb;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    .edit-profile-container input[type="text"],
-    .edit-profile-container input[type="email"],
-    .edit-profile-container input[type="file"] {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      background-color: #444;
-      border: 1px solid #666;
-      border-radius: 5px;
-      color: #fff;
-      font-size: 16px;
-    }
-
-    .edit-profile-container input[type="file"] {
-      padding: 5px;
-    }
-
-    /* Button Styles */
-    .edit-profile-container button {
-      width: auto;
-      padding: 12px;
-      background-color: #34acf1;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      /* transition: background-color 0.3s ease, transform 0.2s ease; */
-    }
-
-    .edit-profile-container button:hover {
-      background-color: #34acf1;
-      transform: scale(1.05);
-    }
-
-  </style>
-</head>
-<body>
 
   <!-- Navbar -->
-  <div class="navbar">
+  <div class="navbar bg-primary">
     <ul>
       <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
       <li><a href="#">logout</a></li>
@@ -85,20 +19,20 @@
       <div class="col-md-3 w-100 text-center">
         <img [src]="admindata.imageUrl[0]" style="height:200px;width:200px;" alt="User Image" class="profile-image">
       </div>
+      <div class="col-md-auto">
       <label for="editName">Full Name</label>
       <input type="text" id="editName" name="name" placeholder="Enter your name" formControlName="userName" [(ngModel)]="admindata.userName">
 
       <label for="editEmail">Email</label>
-      <input type="email" id="editEmail" name="email" placeholder="Enter your email" formControlName="email" [ngModel]="admindata.email">
+      <input type="email" id="editEmail" name="email" placeholder="Enter your email" formControlName="email" [(ngModel)]="admindata.email">
 
       <label for="editEmail">Role</label>
       <input type="email" id="editEmail" [value]="admindata.role" [readOnly]="true">
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 
-      <button type="submit">Save Changes</button>
+      <button type="submit" class="btn-primary">Save Changes</button>
+    </div>
     </form>
   </div>
   <!-- <p class="text-light">{{admindata | json}}</p> -->
-</body>
-</html>

@@ -1,0 +1,10 @@
+.refereshbtn{
+    border: none;
+    outline: none;
+}
+.refereshbtn:hover,
+.refereshbtn:focus
+{
+    border: none;
+    outline: none;
+}

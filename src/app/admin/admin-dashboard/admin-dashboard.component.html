@@ -5,176 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dark Theme Dashboard</title>
   <style>
-    /* General Styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #121212;
-      color: #fff;
-      transition: all 0.3s ease;   
-      /* overflow: hidden;  */
-    }
 
-    /* Top Navigation Bar */
-    .navbar {
-      background-color: #34acf1;
-      padding: 15px;
-      /* position: fixed; */
-      width: 100%;
-      /* top: 0;
-      left: 0; */
-      /* z-index: 10; */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      margin: 0;
-      padding: 0;
-    }
-
-    .navbar ul li {
-      margin: 0 15px;
-    }
-
-    .navbar a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 10px;
-      border-radius: 5px;
-      /* transition: background-color 0.3s ease, transform 0.3s ease; */
-    }
-
-    .navbar a:hover {
-      background-color: #fff;
-      color: black;
-      transform: scale(1.1);
-    }
-
-    /* Container for content */
-    .container {
-      width: 100%;
-      margin-top: 100px;
-      margin: 30px auto;
-      /* animation: fadeIn 1s ease-in-out; */
-      height: 100%;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 36px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Table Styles */
-    .table-container {
-      background-color: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-      /* animation: slideIn 1s ease-in-out; */
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 15px;
-      text-align: left;
-      font-size: 16px;
-    }
-
-    th {
-      background-color: #444;
-      color: #fff;
-      text-transform: uppercase;
-      font-size: 18px;
-    }
-
-    tr:nth-child(even) {
-      background-color: #333;
-    }
-
-    tr{
-        font-size: 18px;
-    }
-
-    tr:hover {
-      background-color: #555;
-      cursor: pointer;
-    }
-
-    button {
-      padding: 8px 15px;
-      margin: 5px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .edit-btn {
-      background-color: #34acf1;
-      color: white;
-      font-size: 18px;
-    }
-
-    .delete-btn {
-      background-color: #444;
-      border: 1px solid white;
-      color: white;
-      font-size: 18px;
-    }
-
-    .edit-btn:hover {
-      background-color: #34acf1;
-      transform: scale(1.05);
-    }
-
-    .delete-btn:hover {
-      background-color: white;
-      color: black;
-      transform: scale(1.05);
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      0% {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+   
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <div class="navbar">
+  <div class="navbar bg-primary">
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#" routerLink="/adminProfile">Profile</a></li>
@@ -182,18 +20,43 @@
         <a href="#" class="btn-link" (click)="logout()">Logout</a></li>
     </ul>
   </div>
-
+  <!-- <input type="text" [(ngModel)]="searchText"> -->
+  <!-- <ul *ngFor="let user of userData.content|filter:searchText"> 
+   <p class="text-light">{{user.userName|filter:searchUserData}}</p>
+  </ul> -->
   <!-- Main Content -->
   <div class="container">
-    <h1>Admin Dashboard</h1>
+    <div class="row p-4">
+      <h1>Dashboard</h1>
+    </div>
     <div class="table-container">
-        <h2>Registered Users</h2>
-        <h5>Total Users: {{userData.totalElements}}</h5>
-        <h3>Total Record: {{pageSize}}</h3>
-  
+      <div class="row">
+        <div class="col-md-6"></div>
+      </div>
+        <!-- <h5>Total Users: {{userData.totalElements}}</h5>
+        <h3>Total Record: {{pageSize}}</h3> -->
+      <br>
         <div class="d-flex">
-          <input type="text" placeholder="search users" class="form-control w-50" [(ngModel)]="searchUserData">
-          <button  class="btn btn-primary" (click)="searchUser()">Search</button>
+          <!-- <input type="text" placeholder="search users" class="form-control w-50"  [(ngModel)]=" searchUserData " >
+          <button  class="btn btn-primary" (click)="searchUser()">Search</button> -->
+          <div class="search-container">
+            <input type="text" placeholder="Search..." class="search-input" [(ngModel)]=" searchUserData " />
+            <button class="search-btn btn-primary" (click)="searchUser()">
+              <i class="bi bi-search"></i>  <!-- This shows a search icon -->
+
+            </button>
+          </div>
+          <button  class="btn btn-primary" (click)="reset()">Reset</button>
+          <button  class="btn btn-primary" (click)="downlodUserReports()">Download Reports </button>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <h5> Registered Users</h5>
+          </div>
+          <div class="col-md-6 text-end">
+           <h5><b>Total User: {{userData.totalElements}}</b></h5>
+          </div>
         </div>
       <table>
         <thead>
@@ -205,12 +68,11 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <!-- <tr><input type="text" class="w-100 form-control"></tr> -->
-          <tr *ngFor="let user of userData.content">
-            <td>{{user.id}}</td>
+          <tr *ngFor="let user of userData.content;index as i">
+            <td>{{i+1}}</td>
             <td>
-            
               <ng-container *ngIf="user.userImg else aliasBlock">
                 <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt="">
                 <!-- <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt=""> -->
@@ -230,7 +92,7 @@
             <td>{{user.email}}</td>
             <td>
               <!-- viewUser -->
-              <button class="edit-btn"><a href="#" [routerLink]="['/viewUser',user.id]" class="text-light text-decoration-none">View</a></button>
+              <button class="view-btn btn-primary"><a href="#" [routerLink]="['/viewUser',user.id]" class="text-light text-decoration-none">View</a></button>
               <button class="edit-btn"><a href="#" [routerLink]="['/updateUser',user.id]" class="text-light text-decoration-none">Edit</a></button>
               <button class="delete-btn" (click)="deleteById(user.id)">Delete</button>
             </td>
@@ -258,7 +120,37 @@
     </div>
     
   </div>
-  <nav aria-label="Page navigation example" class="page" >
+  <div>
+    <div>
+    </div>
+  </div>
+  <nav aria-label="Page navigation example" class="w-100" style="display: flex;justify-content: center;">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" aria-label="Previous" (click)="Onprevious()" class="btn onPrevious-btn bg-light" [class.disabled]="pageIndex == 0" >
+          <span aria-hidden="true">&laquo;</span>
+          <!-- <span class="sr-only">Previous</span> -->
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link">{{pageIndex + 1 }} of {{userData.totalPages}} pages</a></li>
+      <li class="page-item">
+        <a class="page-link" aria-label="Next" (click)="OnNext()" [class.disabled]="userData.last==true">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li>
+        <!-- <p>
+          Total Records:{{pageSize}}
+        </p> -->
+        <p style="display: flex; position: absolute;right:250px">
+          <!-- Total Pages:{{userData.totalPages}} -->
+          <b> Total Records:{{pageSize}} </b>
+        </p>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- <nav aria-label="Page navigation example" class="page" >
     <ul class="pagination d-flex justify-content-center">
       <li class="page-item">
         <p>
@@ -278,10 +170,9 @@
        [class.disabled]="userData.last==true">
         Next
       </button>
-      <!-- [class.disabled]="userData.last==true" -->
       </li>
     </ul>
-  </nav>
+  </nav> -->
   <!-- <p style="color: white;">{{userData | json}}</p> -->
   <!-- <div *ngFor="let user of userData">
     <p>{{user.u}}</p>
@@ -291,7 +182,7 @@
 <!-- <p class="text-light">
   {{userData | json}}
 </p> -->
-<p>        {{searchUserData.search}}</p>
+<!-- <p>        {{searchUserData.search}}</p> -->
 <td>
 
 </td>
@@ -303,3 +194,5 @@
     {{ getInitials(s.username) }}
   </div>
 </ng-template> -->
+
+
