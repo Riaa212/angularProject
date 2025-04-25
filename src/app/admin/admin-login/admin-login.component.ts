@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin.service';
 import { Router } from '@angular/router';
+import { CaptchaService } from '../../services/captcha.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -14,58 +15,49 @@ export class AdminLoginComponent {
   loginForm:any
   loginData:any
   adminService=inject(AdminService)
+  captchaservice=inject(CaptchaService)
   route=inject(Router)
-  captchaVerified = false;
+  captchaImg:any
+  // captchaVerified = false;
   constructor(fb:FormBuilder)
   {
+    this.getCaptcha()
     this.loginForm=fb.group({
       email:['',Validators.required],
       password:['',Validators.required],
+      captcha:['',Validators.required]
       
     })
   }
 
-  siteKey = '6LdOASIrAAAAAEqg1SDgiDfzWq-QlHCBT_dyYj4-'; // ✅ Replace with your actual site key
-  
-  // secretKey='6LdOASIrAAAAAIu9Zr6ERoSR-iK58_27UjMkQlei';
-
-  captchaToken: string = '';
-
-  
-  onCaptchaResolved(token: string) {
-    this.captchaToken = token;
-    console.log('CAPTCHA Token: ', token);
-  }
-  handleSuccess(token: string) {
-    this.captchaVerified = true;
-    console.log('CAPTCHA success! Token:', token);
+  getCaptcha()
+  {
+    console.log("get captcha...")
+    this.captchaservice.getCaptcha().subscribe((rs)=>
+    this.captchaImg=rs
+    )
   }
 
-  handleReset() {
-    console.log('CAPTCHA reset!');
-  }
 
-  handleExpire() {
-    console.log('CAPTCHA expired!');
-  }
-
-  handleLoad() {
-    console.log('CAPTCHA loaded!');
+  refershCaptcha()
+  {
+    this.getCaptcha()
   }
 
   submitData()
   {
-    if(!this.captchaVerified)
-      {
-        console.log("please complete captcha")
-        // alert('please complete captcha')
-        // return;
-      }
+    // if(!this.captchaVerified)
+    //   {
+    //     console.log("please complete captcha")
+    //     // alert('please complete captcha')
+    //     // return;
+    //   }
      
       const payload={
         email:this.loginForm.value.email,
         password:this.loginForm.value.password,
-        captcha:this.captchaToken
+        captcha:this.loginForm.value.captcha
+        // captcha:this.captchaToken
       }
 
     this.adminService.login(this.loginForm.value).subscribe((rs)=>
@@ -89,3 +81,31 @@ export class AdminLoginComponent {
     )
   }
 }
+
+// siteKey = '6LdOASIrAAAAAEqg1SDgiDfzWq-QlHCBT_dyYj4-'; // ✅ Replace with your actual site key
+  
+// // secretKey='6LdOASIrAAAAAIu9Zr6ERoSR-iK58_27UjMkQlei';
+
+// captchaToken: string = '';
+
+
+// onCaptchaResolved(token: string) {
+//   this.captchaToken = token;
+//   console.log('CAPTCHA Token: ', token);
+// }
+// handleSuccess(token: string) {
+//   this.captchaVerified = true;
+//   console.log('CAPTCHA success! Token:', token);
+// }
+
+// handleReset() {
+//   console.log('CAPTCHA reset!');
+// }
+
+// handleExpire() {
+//   console.log('CAPTCHA expired!');
+// }
+
+// handleLoad() {
+//   console.log('CAPTCHA loaded!');
+// }

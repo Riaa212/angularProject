@@ -15,7 +15,7 @@ export class AdminService {
   login(loginData:any):Observable<any>
  {
   console.log("login called...")
-  return this.http.post<any>(this.baseurl+"/loginReq",loginData)
+  return this.http.post<any>(this.baseurl+"/login",loginData)
   .pipe(tap((response: any) => console.log('API Response:', response)))
  }
 

@@ -72,7 +72,9 @@
 
     .edit-profile-container input[type="password"],
     .edit-profile-container input[type="email"],
-    .edit-profile-container input[type="file"] {
+    .edit-profile-container input[type="file"] ,
+    .edit-profile-container input[type="text"]
+    {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
@@ -126,8 +128,17 @@
 
       <label for="editEmail">Password</label>
       <input type="password" id="editEmail" name="email" placeholder="Enter your Password" formControlName="password">
+
+      <label for="editEmail">Captcha</label>
+      <input type="text" id="editEmail" name="captcha" placeholder="Enter your captcha" formControlName="captcha">
+      &nbsp; &nbsp;
+      <p>
+        <img [src]="captchaImg.image" alt="CAPTCHA" /> &nbsp;
+        <button class="btn btn-small" (click)="refershCaptcha()">Referesh captcha</button>
+      </p>
       <!-- forgetPwd -->
            <a href="" class="text-light" routerLink="/forgetPwd">forget Password</a>
+           <br>
       <!-- <ngx-recaptcha2 #captchaElem
       [siteKey]="siteKey"
       (reset)="handleReset()"
@@ -146,4 +157,3 @@
   </div>
 </body>
 </html>
-
