@@ -12,7 +12,7 @@
 <body>
 
   <!-- Navbar -->
-  <div class="navbar bg-primary">
+  <div class="navbar" style="background-color: #103783;">
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#" routerLink="/adminProfile">Profile</a></li>
@@ -35,19 +35,19 @@
       </div>
         <!-- <h5>Total Users: {{userData.totalElements}}</h5>
         <h3>Total Record: {{pageSize}}</h3> -->
+        <!-- <p>{{totalUser}}</p> -->
       <br>
         <div class="d-flex">
           <!-- <input type="text" placeholder="search users" class="form-control w-50"  [(ngModel)]=" searchUserData " >
           <button  class="btn btn-primary" (click)="searchUser()">Search</button> -->
           <div class="search-container">
-            <input type="text" placeholder="Search..." class="search-input" [(ngModel)]=" searchUserData " />
-            <button class="search-btn btn-primary" (click)="searchUser()">
+            <input type="text" placeholder="Search..." class="search-input" [(ngModel)]="searchUserData" />
+            <button class="search-btn" style="background-color: #103783;" (click)="searchUser()">
               <i class="bi bi-search"></i>  <!-- This shows a search icon -->
-
             </button>
           </div>
-          <button  class="btn btn-primary" (click)="reset()">Reset</button>
-          <button  class="btn btn-primary" (click)="downlodUserReports()">Download Reports </button>
+          <button  class="btn text-light" style="background-color: #103783;" (click)="reset()">Reset</button>
+          <button  class="btn text-light" style="background-color: #103783;" (click)="downlodUserReports()">Download Reports </button>
         </div>
         <br>
         <div class="row">
@@ -58,7 +58,10 @@
            <h5><b>Total User: {{userData.totalElements}}</b></h5>
           </div>
         </div>
-      <table>
+        <!-- {{totalUser}} -->
+        <!-- {{userData.numberOfElements }} -->
+         <!-- {{getsearchUserData.numberOfElements}} -->
+      <table *ngIf="userData?.content?.length > 0; else noData">
         <thead>
           <tr>
             <th>ID</th>
@@ -70,7 +73,7 @@
         </thead>
         <tbody>
           <!-- <tr><input type="text" class="w-100 form-control"></tr> -->
-          <tr *ngFor="let user of userData.content;index as i">
+          <tr *ngFor="let user of userData.content|filter:searchUserData;index as i">
             <td>{{i+1}}</td>
             <td>
               <ng-container *ngIf="user.userImg else aliasBlock">
@@ -92,9 +95,17 @@
             <td>{{user.email}}</td>
             <td>
               <!-- viewUser -->
-              <button class="view-btn btn-primary"><a href="#" [routerLink]="['/viewUser',user.id]" class="text-light text-decoration-none">View</a></button>
-              <button class="edit-btn"><a href="#" [routerLink]="['/updateUser',user.id]" class="text-light text-decoration-none">Edit</a></button>
-              <button class="delete-btn" (click)="deleteById(user.id)">Delete</button>
+              <button class="view-btn" style="background-color:#e3edf8;">
+                <a href="#" [routerLink]="['/viewUser',user.id]" class=" text-decoration-none">
+                <i class="bi bi-eye-fill text-primary" style="font-size: 20px;"></i></a>
+              </button>
+              <button class="edit-btn" style="background-color:#e3edf8;">
+                <a href="#" [routerLink]="['/updateUser',user.id]" class="text-light text-decoration-none">
+                <i class="bi bi-pencil-square" style="color:#07aa38;font-size: 20px;"></i></a>
+              </button>
+              <button class="delete-btn" (click)="deleteById(user.id)" style="background-color:#e3edf8;">
+                <i class="bi bi-trash-fill" style="color:rgb(211, 5, 5);font-size: 20px;"></i>
+              </button>
             </td>
           </tr>
           <!-- <tr>
@@ -117,6 +128,9 @@
           </tr> -->
         </tbody>
       </table>
+      <ng-template #noData class="bg-dark">
+        <p>No data available.</p>
+      </ng-template>
     </div>
     
   </div>
@@ -134,11 +148,13 @@
       </li>
       <li class="page-item"><a class="page-link">{{pageIndex + 1 }} of {{userData.totalPages}} pages</a></li>
       <li class="page-item">
+        <!-- {{userData.last}} -->
         <a class="page-link" aria-label="Next" (click)="OnNext()" [class.disabled]="userData.last==true">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
       <li>
+        
         <!-- <p>
           Total Records:{{pageSize}}
         </p> -->
@@ -196,3 +212,5 @@
 </ng-template> -->
 
 
+
+<!-- {{userData | json}} -->

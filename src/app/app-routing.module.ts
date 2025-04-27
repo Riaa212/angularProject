@@ -8,8 +8,10 @@ import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
 import { authguardGuard } from './authguard.guard';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ViewUserComponent } from './users/view-user/view-user.component';
+import { RegisterComponent } from './admin/register/register.component';
 
 const routes: Routes = [
+  {path:'reg',component:RegisterComponent},
   {path:'dashboard',component:AdminDashboardComponent,canActivate:[authguardGuard]},
   {path:'adminProfile',component:AdminProfileComponent,canActivate:[authguardGuard]},
   {path:'',component:AdminLoginComponent},

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
@@ -38,6 +38,25 @@ export class AdminService {
  {
   return this.http.post(this.baseurl+"/resetpassword",resetpassword)
  }
+
+
+ saveDataWithImage(formData: FormData)
+ {
+  return this.http.post(this.baseurl+"/upload", formData, {
+    // headers: { 'Content-Type': 'application/json' }
+    // // 'Content-Type': 'application/json'
+    headers: new HttpHeaders(),
+  });
+  // console.log("admin service called...")
+  // const formData = new FormData();
+  // formData.append('image', file, file.name);
+  // formData.append('username', username);
+  // formData.append('password',password);
+  // return this.http.post(this.baseurl+"/upload", formData, {
+  //   headers: new HttpHeaders(),
+  // });
+ }
+ 
 }
 // baseurl="http://localhost:8087/user"
 

@@ -15,7 +15,8 @@ import { ForgetpwdComponent } from './admin/forgetpwd/forgetpwd.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { FilterPipe } from './filter.pipe';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './admin/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { FilterPipe } from './filter.pipe';
     AdminLoginComponent,
     ForgetpwdComponent,
     ErrorpageComponent,
-    FilterPipe
+    FilterPipe,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { FilterPipe } from './filter.pipe';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}

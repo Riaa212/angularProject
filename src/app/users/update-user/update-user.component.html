@@ -72,7 +72,7 @@
 <body>
 
   <!-- Navbar -->
-  <div class="navbar bg-primary">
+  <div class="navbar" style="background-color: #103783;">
     <ul>
       <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
       <li><a href="#">logout</a></li>
@@ -82,8 +82,11 @@
   </div>
   <!-- Edit Profile Section -->
   <div class="edit-profile-container">
-    <a href="" class="text-light" routerLink="/dashboard">Back</a>
-    
+    <button class="btn" style="border-radius: 50%; height: 46px;width: 46px;">
+      <a href="" class="text-decoration-none" routerLink="/dashboard">
+        <i class="bi bi-arrow-left-circle-fill"  style="font-size: 32px;color: #103783;"></i>
+      </a>
+      </button>
     <h2>Update User Profile</h2>
     <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateUserById()">
       <div>
@@ -111,7 +114,7 @@
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 
-      <button type="submit" class="btn-primary">Save Changes</button>
+      <button type="submit" style="background-color: #103783;">Save Changes</button>
     </form>
   </div>
   <!-- <p class="text-light">{{userdata | json}}</p> -->

@@ -18,7 +18,7 @@ export class AdminDashboardComponent {
   route=inject(Router)
   userService=inject(UserService)
   storage=inject(LoginService)
-  userData:any
+  userData: any = { content: [] };
 
   totalRecords: number = 0;
   pageSize: number = 10;
@@ -27,7 +27,11 @@ export class AdminDashboardComponent {
   next:number=0
   searchUserData:string=''
   s: any;
-  searchText: string='';
+  getsearchUserData:any
+
+  totalUser:any
+
+  noData:any
   constructor(private loginstore:LoginService,private fb:FormBuilder,private http:HttpClient)
   {
     // this.getAllUsers()
@@ -36,6 +40,7 @@ export class AdminDashboardComponent {
     // this.searchUserData=fb.group({
     //   search:['',Validators.required]
     // })
+    this.searchUser()
   }
   logout(){
 
@@ -69,22 +74,30 @@ export class AdminDashboardComponent {
     // console.log(this.previous)
     this.userService.getAllUsers(this.previous,this.pageSize).subscribe(a=>this.userData=a)
   }
+
   OnNext()
   {
     if(this.storage.getLoginData('token'))
     {
     this.pageIndex++
     this.next=this.pageIndex
-    console.log(this.userService.getAllUsers(this.next,this.pageSize).subscribe(a=>this.userData=a))
+
+    this.userService.getAllUsers(this.next,this.pageSize).subscribe(a=>
+      {
+        this.userData=a
+      })
     }
-    // else{
-    //   this.route.navigate(['/login'])
-    // }
   }
 
   searchUser()
   {
-    this.userService.searchUser(this.searchUserData,this.previous,this.pageSize).subscribe(a=>this.userData=a)
+    this.userService.searchUser(this.searchUserData,this.previous,this.pageSize).subscribe(a=>
+    {
+      // this.getsearchUserData=a
+      // this.totalUser=this.getsearchUserData.numberOfElements
+      // console.log(this.getsearchUserData.numberOfElements)
+    }
+    )
   }
 
   //reset after search
@@ -117,6 +130,7 @@ export class AdminDashboardComponent {
       
   }
 
+  //for live search 
   getInitials(fullName: string): string {
     if (!fullName) return '';
     const words = fullName.trim().split(' ');
@@ -127,3 +141,4 @@ export class AdminDashboardComponent {
     return initials;
     }
 }
+

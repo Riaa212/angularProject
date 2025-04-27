@@ -15,14 +15,18 @@ export class FilterPipe implements PipeTransform {
     // return null;
 
   
-  args=args.toUpperCase();
- console.log("args"+args)
-//  console.log("value=="+value)
-  return value.filter(
-    function(item:any){
-      // return item.toLowerCase().includes(args)
-    return JSON.stringify(item).toLowerCase().includes(args);
-  });
+//   args=args.toLowerCase();
+//  console.log("args"+args)
+// //  console.log("value=="+value)
+//   return value.filter(
+//     function(item:any){
+//       // return item.toLowerCase().includes(args)
+//     return JSON.stringify(item).toUpperCase().includes(args);
+//   });
+args = args.toLowerCase();
+return value.filter((item: any) => {
+  return JSON.stringify(item).toLowerCase().includes(args);
+});
   }
 
 }
