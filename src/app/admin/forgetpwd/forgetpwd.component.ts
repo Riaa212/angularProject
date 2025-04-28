@@ -5,22 +5,23 @@ import { AdminService } from '../../services/admin.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../login.service';
 import { Router } from '@angular/router';
-import {
-  trigger, style, animate, transition
-} from '@angular/animations';
+// import {
+//   trigger, style, animate, transition
+// } from '@angular/animations';
 @Component({
   selector: 'app-forgetpwd',
   standalone: false,
   templateUrl: './forgetpwd.component.html',
   styleUrl: './forgetpwd.component.css'
-  ,animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
-      ])
-    ])
-  ]
+  
+  // animations: [
+  //   trigger('fadeIn', [
+  //     transition(':enter', [
+  //       style({ opacity: 0, transform: 'translateY(20px)' }),
+  //       animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+  //     ])
+  //   ])
+  // ]
 })
 export class ForgetpwdComponent {
 

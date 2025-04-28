@@ -85,6 +85,7 @@ export class AdminDashboardComponent {
     this.userService.getAllUsers(this.next,this.pageSize).subscribe(a=>
       {
         this.userData=a
+        // this.totalUser=this.userData.numberOfElements
       })
     }
   }
@@ -94,8 +95,10 @@ export class AdminDashboardComponent {
     this.userService.searchUser(this.searchUserData,this.previous,this.pageSize).subscribe(a=>
     {
       // this.getsearchUserData=a
-      // this.totalUser=this.getsearchUserData.numberOfElements
+      // this.totalUser=this.getsearchUserData.totalElements
       // console.log(this.getsearchUserData.numberOfElements)
+      this.userData=a
+      console.log(a)
     }
     )
   }

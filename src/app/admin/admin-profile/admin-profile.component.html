@@ -15,19 +15,27 @@
   <!-- Edit Profile Section -->
   <div class="edit-profile-container">
     <h2>Edit Profile</h2>
-    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()">
+    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()" enctype="multipart/form-data">
       <div class="col-md-3 w-100 text-center">
         <img [src]="admindata.profilePic" style="height:250px;width:200px;border-radius: 20px;" alt="User Image" class="profile-image">
       </div>
+      <div class="mb-3">
+        <!-- File Input -->
+   <label for="image">Select Image:</label>
+   <input type="file" id="image" (change)="onFileSelected($event)" class="form-control">
+   <!-- <div *ngIf="uploadForm.get('image')?.invalid && uploadForm.get('image')?.touched">
+     <small class="error-text">Image is required</small>
+   </div> -->
+</div>
       <div class="col-md-auto">
       <label for="editName">Full Name</label>
-      <input type="text" id="editName" name="name" placeholder="Enter your name" formControlName="userName" [(ngModel)]="admindata.userName">
+      <input type="text" id="editName"  placeholder="Enter your name" formControlName="username" [(ngModel)]="admindata.userName">
 
       <label for="editEmail">Email</label>
-      <input type="email" id="editEmail" name="email" placeholder="Enter your email" formControlName="email" [(ngModel)]="admindata.email">
+      <input type="email" id="editEmail"  placeholder="Enter your email" formControlName="email" [(ngModel)]="admindata.email">
 
       <label for="editEmail">Role</label>
-      <input type="email" id="editEmail" [value]="admindata.role" [readOnly]="true">
+      <input type="text"  [value]="admindata.role" [readOnly]="true">
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 
@@ -35,4 +43,4 @@
     </div>
     </form>
   </div>
-  <!-- <p class="text-dark">{{admindata | json}}</p> -->
+  <p class="text-dark">{{admindata | json}}</p>

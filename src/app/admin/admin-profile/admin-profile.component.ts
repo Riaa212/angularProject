@@ -21,15 +21,19 @@ export class AdminProfileComponent {
 
   inputData:any
   rout=inject(Router)
+  // uploadForm: any;
+  imageUrl: any;
   constructor(private route: ActivatedRoute,private fb:FormBuilder)
   {
    this.adminemail=this.loginstore.getLoginData("userName")
    this.getAdminByEmail()
    this.adminid = this.route.snapshot.paramMap.get('id');
-    console.log(this.adminid)
+    console.log("adid"+this.adminid+"\n admindata"+this.admindata)
    this.inputData=fb.group({
-    userName:['',Validators.required],
-    email:['',Validators.required],
+    // aid:[1],
+    email:['', Validators.required],  // Role with default value 'USER'
+    username:['', Validators.required],  // Username required
+     image:[null, Validators.required]
   })
   }
 
@@ -37,11 +41,37 @@ export class AdminProfileComponent {
   {
     this.adminservice.getAdminByEmail(this.adminemail).subscribe((rs)=>this.admindata=rs)
   }
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      // Set the file in the form control
+      this.inputData.patchValue({
+        image: file,
+      });
+      console.log("file......"+file.name)
+    }
+  }
 
   updateAdminById()
   {
-    this.adminservice.updateAdminById(this.admindata.id,this.inputData.value).subscribe()
-    alert("profile updated succefully")
-    this.rout.navigate(['/dashboard'])
+    if (this.inputData.valid) {
+      const formData = new FormData();
+
+      // console.log(this.inputData.get('image')?.value.name)
+      formData.append('email', this.inputData.get('email')?.value);
+      formData.append('username', this.inputData.get('username')?.value);
+      formData.append('image', this.inputData.get('image')?.value, this.inputData.get('image')?.value.name);
+  
+      // console.log("form data=="+formData)
+      this.adminservice.updateProfile(formData).subscribe(response => {
+        console.log('File uploaded successfully:', response);
+        // this.imageUrl = response;  // Display uploaded image URL
+        alert("updated  successfully...")
+        this.rout.navigate(['/adminProfile'])
+        
+      }, error => {
+        console.error('Error uploading file:', error);
+      });
+    } 
   }
 }

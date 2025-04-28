@@ -29,6 +29,15 @@ export class AdminService {
  {  
   return this.http.put(this.baseurl+"/updateAdmin/"+id,admin)
  }
+
+ updateProfile(admin:FormData)
+ {
+  return this.http.post(this.baseurl+"/updateProfile",admin,{
+    // headers: { 'Content-Type': 'application/json' }
+    // // 'Content-Type': 'application/json'
+    headers: new HttpHeaders(),
+  })
+ }
  sentOtp(email:any)
  {
   return this.http.get(this.baseurl+"/testOtp/"+email)

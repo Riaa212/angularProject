@@ -58,7 +58,7 @@
            <h5><b>Total User: {{userData.totalElements}}</b></h5>
           </div>
         </div>
-        <!-- {{totalUser}} -->
+        {{totalUser}}
         <!-- {{userData.numberOfElements }} -->
          <!-- {{getsearchUserData.numberOfElements}} -->
       <table *ngIf="userData?.content?.length > 0; else noData">
@@ -73,7 +73,8 @@
         </thead>
         <tbody>
           <!-- <tr><input type="text" class="w-100 form-control"></tr> -->
-          <tr *ngFor="let user of userData.content|filter:searchUserData;index as i">
+          <tr *ngFor="let user of userData.content;index as i">
+            <!-- filter:searchUserData -->
             <td>{{i+1}}</td>
             <td>
               <ng-container *ngIf="user.userImg else aliasBlock">
@@ -160,7 +161,10 @@
         </p> -->
         <p style="display: flex; position: absolute;right:250px">
           <!-- Total Pages:{{userData.totalPages}} -->
-          <b> Total Records:{{pageSize}} </b>
+          <b> Total Records:{{userData.numberOfElements}} </b>
+        </p>
+        <p>
+          <!-- {{getsearchUserData.totalElements | json}} -->
         </p>
       </li>
     </ul>

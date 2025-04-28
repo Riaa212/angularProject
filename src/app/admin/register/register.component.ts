@@ -49,12 +49,13 @@ export class RegisterComponent {
       formData.append('username', this.uploadForm.get('username')?.value);
       formData.append('email', this.uploadForm.get('email')?.value);
       formData.append('password', this.uploadForm.get('password')?.value);
+      
       // formData.append('role', this.uploadForm.get('role')?.value);
 
       // Call the upload service to send the data to the backend
       this.adminservice.saveDataWithImage(formData).subscribe(response => {
         console.log('File uploaded successfully:', response);
-        this.imageUrl = response;  // Display uploaded image URL
+        // this.imageUrl = response;  // Display uploaded image URL
         alert("register successfully...")
         this.route.navigate([''])
         
