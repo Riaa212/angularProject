@@ -3,12 +3,16 @@ import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-update-user',
   standalone: false,
   templateUrl: './update-user.component.html',
   styleUrl: './update-user.component.css'
 })
+
+
 export class UpdateUserComponent {
 
   userservice=inject(UserService)
@@ -17,6 +21,8 @@ export class UpdateUserComponent {
   route=inject(Router)
   userId:any
   
+  
+
   constructor(private activeroute:ActivatedRoute,private fb:FormBuilder)
   {
     this.userId=activeroute.snapshot.paramMap.get('id');
@@ -41,8 +47,12 @@ export class UpdateUserComponent {
     
     console.log(this.inputData.value)
     this.userservice.updateUserById(this.userId,this.inputData.value).subscribe()
-    alert('user updated succefully')
-    this.route.navigate(['/dashboard'])
+    const modalEl = document.getElementById('successModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+    // alert('user updated succefully')
+
+    // this.route.navigate(['/dashboard'])
   }
 
 }

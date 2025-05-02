@@ -52,9 +52,21 @@ export class ForgetpwdComponent {
 
     if (this.forgetForm.valid) {
       // call your backend for sending OTP
-      this.http.post("http://localhost:2424/admin/testOtp",this.forgetForm.value).subscribe((rs)=>console.log(rs)) 
-      this.showOtpSection = true;
-      alert("please check your email")
+      this.http.post("http://localhost:2424/admin/testOtp",this.forgetForm.value).subscribe(
+        (rs)=>
+        {
+          if(rs==null)
+          {
+            this.showOtpSection = false;
+            alert("email does not exists...")            
+          }
+          else 
+          {
+            this.showOtpSection = true;
+            alert("please check your email")
+          }
+        }
+        ) 
     }
   }
 

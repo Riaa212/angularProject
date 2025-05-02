@@ -20,11 +20,11 @@
         <div class="otp-group">
           <label>Enter OTP</label>
           <div class="otp-inputs">
-            <input *ngFor="let ctrl of otpControls; let i = index"
+            <input id="otp"  *ngFor="let ctrl of otpControls; let i = index"
                    maxlength="1"
                    (input)="onOtpInput($event, i)"
                    [formControl]="ctrl"
-                   type="text" />
+                   type="text"/>
           </div>
         </div>
   

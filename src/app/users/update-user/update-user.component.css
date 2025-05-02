@@ -38,3 +38,19 @@
         color: black;
         transform: scale(1.1);
       }
+
+  
+      .custom-modal {
+        border-radius: 1rem;
+        border: 2px solid #103783;
+        box-shadow: 0 0 30px rgba(15, 50, 163, 0.4);
+      }
+      .modal-header {
+        border-bottom: none;
+        background-color: #103783;
+      }
+      .modal-footer {
+        background-color: #f8f9fa;
+      }
+      
+      
