@@ -54,3 +54,28 @@
       }
       
       
+      .avatar-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 0 5px rgba(0, 132, 255, 0.6);
+        /* background-color: #fff; */
+      }
+      
+      .avatar-fallback {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background-color: #ddf7fd;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 20px;
+        text-transform: uppercase;
+        position: relative;
+        left: 220px;
+        box-shadow: 0 0 5px rgba(57, 157, 252, 0.6);
+      }

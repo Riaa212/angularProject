@@ -17,6 +17,7 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './admin/register/register.component';
+import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { RegisterComponent } from './admin/register/register.component';
     ErrorpageComponent,
     FilterPipe,
     RegisterComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

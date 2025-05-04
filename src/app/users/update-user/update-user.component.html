@@ -89,8 +89,20 @@
       </button>
     <h2>Update User Profile</h2>
     <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateUserById()">
-      <div>
-        <img [src]="userdata.userImg" alt="">
+      <div >
+        <!-- <img [src]="userdata.userImg" alt="user image" style="border-radius: 10px;height: 250px;"> -->
+        <ng-container *ngIf="userdata.userImg else aliasBlock">
+          <img [src]="userdata.userImg" style="border-radius: 30px;height: 250px;width: 250px;" class="img-thumbnail" alt="">
+          <!-- <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt=""> -->
+          <!-- <img [src]="'data:image/png;base64,' + s.fileData" alt="profile" class="avatar-img" (error)="s.fileData = null" /> -->
+        </ng-container>
+
+        <ng-template #aliasBlock>
+          <div class="avatar-fallback">
+            {{ getInitials(userdata.userName) }}
+          </div>
+        </ng-template>
+
       </div>
       <label for="editName">Full Name</label>
       <input type="text" id="editName"  placeholder="Enter your name" formControlName="userName" [(ngModel)]="userdata.userName">
@@ -102,7 +114,7 @@
       <input type="text"  [value]="userdata.dob"> -->
 
       <label for="editEmail">Address</label>
-      <input type="text" placeholder="Enter your email" formControlName="address" [(ngModel)]="userdata.address">
+      <input type="text" placeholder="Enter your address" formControlName="address" [(ngModel)]="userdata.address">
 
       <!-- <label for="editEmail">mobileNumber</label>
       <input type="text" placeholder="Enter your email" formControlName="address" [(ngModel)]="userdata.mobileNumber"> -->
@@ -114,7 +126,7 @@
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 
-      <button type="submit" style="background-color: #103783;">Save Changes</button>
+      <button type="submit" style="background-color: #103783;" class="w-100">Save Changes</button>
     </form>
   </div>
 

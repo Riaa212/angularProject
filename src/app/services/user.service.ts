@@ -34,6 +34,15 @@ export class UserService {
   const blob = new Blob([], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
   return this.http.get<Blob>(this.baseurl+"/downloadExcelFile")
   }
+
+  downloadPdf()
+  {
+    // http://localhost:2424/user/downloadpdf
+    return this.http.get(this.baseurl+'/downloadpdf', {
+      responseType: 'blob' // Important: receive binary file
+    });
+  }
+
   getUserById(userId:any)
   {
     return this.http.get(this.baseurl+"/getUserById/"+userId)

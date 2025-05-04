@@ -32,8 +32,7 @@ export class AdminProfileComponent {
    this.inputData=fb.group({
     // aid:[1],
     email:['', Validators.required],  // Role with default value 'USER'
-    username:['', Validators.required],  // Username required
-     image:[null, Validators.required]
+    userName:['', Validators.required]  // Username required
   })
   }
 
@@ -41,37 +40,47 @@ export class AdminProfileComponent {
   {
     this.adminservice.getAdminByEmail(this.adminemail).subscribe((rs)=>this.admindata=rs)
   }
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      // Set the file in the form control
-      this.inputData.patchValue({
-        image: file,
-      });
-      console.log("file......"+file.name)
-    }
-  }
+  // onFileSelected(event: any): void {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     // Set the file in the form control
+  //     this.inputData.patchValue({
+  //       image: file,
+  //     });
+  //     console.log("file......"+file.name)
+  //   }
+  // }
 
   updateAdminById()
   {
-    if (this.inputData.valid) {
-      const formData = new FormData();
+    console.log("input data"+this.inputData.value)
+    this.adminservice.updateProfile(this.inputData.value).subscribe(response => {
+      // console.log('File uploaded successfully:', response);
+      // this.imageUrl = response;  // Display uploaded image URL
+      alert("updated  successfully...")
+      this.rout.navigate(['/adminProfile'])
+      
+    }, error => {
+      console.error('Error uploading file:', error);
+    });
+    // if (this.inputData.valid) {
+      // const formData = new FormData();
 
       // console.log(this.inputData.get('image')?.value.name)
-      formData.append('email', this.inputData.get('email')?.value);
-      formData.append('username', this.inputData.get('username')?.value);
-      formData.append('image', this.inputData.get('image')?.value, this.inputData.get('image')?.value.name);
+      // formData.append('email', this.inputData.get('email')?.value);
+      // formData.append('username', this.inputData.get('username')?.value);
+      // formData.append('image', this.inputData.get('image')?.value, this.inputData.get('image')?.value.name);
   
       // console.log("form data=="+formData)
-      this.adminservice.updateProfile(formData).subscribe(response => {
-        console.log('File uploaded successfully:', response);
-        // this.imageUrl = response;  // Display uploaded image URL
-        alert("updated  successfully...")
-        this.rout.navigate(['/adminProfile'])
+      // this.adminservice.updateProfile(this.inputData.value).subscribe(response => {
+      //   // console.log('File uploaded successfully:', response);
+      //   // this.imageUrl = response;  // Display uploaded image URL
+      //   alert("updated  successfully...")
+      //   this.rout.navigate(['/adminProfile'])
         
-      }, error => {
-        console.error('Error uploading file:', error);
-      });
-    } 
+      // }, error => {
+      //   console.error('Error uploading file:', error);
+      // });
+    // } 
   }
 }

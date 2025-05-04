@@ -9,11 +9,13 @@ import { authguardGuard } from './authguard.guard';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ViewUserComponent } from './users/view-user/view-user.component';
 import { RegisterComponent } from './admin/register/register.component';
+import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {path:'reg',component:RegisterComponent},
   {path:'dashboard',component:AdminDashboardComponent,canActivate:[authguardGuard]},
   {path:'adminProfile',component:AdminProfileComponent,canActivate:[authguardGuard]},
+  {path:'updateAdmin',component:EditProfileComponent,canActivate:[authguardGuard]},
   {path:'',component:AdminLoginComponent},
   {path:'updateUser/:id',component:UpdateUserComponent,canActivate:[authguardGuard]},
   {path:'forgetPwd',component:ForgetpwdComponent},

@@ -125,7 +125,19 @@ export class AdminDashboardComponent {
     link.href = URL.createObjectURL(blob);
     link.download = filename;
     link.click();
-  })
+  })  
+}
+
+downloadPdf(){
+  // this.http.get("http://localhost:2424/user/downloadpdf",{ responseType: 'blob' }).subscribe((response:Blob)=>{
+  // })
+  this.userService.downloadPdf().subscribe(blob => {
+    const file = new Blob([blob], { type: 'application/pdf' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(file);
+    link.download = 'users.pdf';
+    link.click();
+  });
 }
 
   updateAdminData()

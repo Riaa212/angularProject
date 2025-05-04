@@ -1,48 +1,53 @@
 
-  <!-- <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-  <!-- <title>Edit Profile - Dark Theme</title> -->
+
+<!-- Navbar -->
+<div class="navbar" style="background-color: #103783;">
+  <ul>
+    <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
+    <li><a href="#">logout</a></li>
+  </ul>
+</div>
+<body>
 
 
-  <!-- Navbar -->
-  <div class="navbar" style="background-color: #103783;">
-    <ul>
-      <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
-      <li><a href="#">logout</a></li>
-    </ul>
+  <div class="profile-card">
+    <img [src]="admindata.profilePic"   alt="Admin" class="profile-image img-thumbnail">
+    <div class="profile-name">Admin </div>
+    <div class="profile-role">System Administrator</div>
+    
+    <div class="profile-info">
+      <p><strong>User Name:</strong> {{admindata.userName}}</p>
+      <p><strong>Email:</strong> {{admindata.email}}</p>
+      <p><strong>Role:</strong> {{admindata.role}}</p>
+    </div>
+
+    <button class="edit-button">
+      <a routerLink="/updateAdmin" class="text-light text-decoration-none">Edit Profile</a>
+    </button>
+
   </div>
-
+  </body>
   <!-- Edit Profile Section -->
-  <div class="edit-profile-container">
+  <!-- <div class="edit-profile-container">
     <h2>Edit Profile</h2>
-    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()" enctype="multipart/form-data">
+    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()">
       <div class="col-md-3 w-100 text-center">
         <img [src]="admindata.profilePic" style="height:250px;width:200px;border-radius: 20px;" alt="User Image" class="profile-image">
       </div>
-      <div class="mb-3">
-        <!-- File Input -->
-   <label for="image">Select Image:</label>
-   <input type="file" id="image" (change)="onFileSelected($event)" class="form-control">
-   <!-- <div *ngIf="uploadForm.get('image')?.invalid && uploadForm.get('image')?.touched">
-     <small class="error-text">Image is required</small>
-   </div> -->
-</div>
       <div class="col-md-auto">
       <label for="editName">Full Name</label>
-      <input type="text" id="editName"  placeholder="Enter your name" formControlName="username" [(ngModel)]="admindata.userName">
+      <input type="text" id="editName"  placeholder="Enter your name" formControlName="userName" [(ngModel)]="admindata.userName">
 
       <label for="editEmail">Email</label>
       <input type="email" id="editEmail"  placeholder="Enter your email" formControlName="email" [(ngModel)]="admindata.email">
 
       <label for="editEmail">Role</label>
       <input type="text"  [value]="admindata.role" [readOnly]="true">
-      <!-- <label for="editProfilePic">Profile Picture</label>
-      <input type="file" id="editProfilePic" name="profilePic"> -->
 
       <button type="submit" style="background-color: #103783;">Save Changes</button>
     </div>
     </form>
-  </div>
-  <p class="text-dark">{{admindata | json}}</p>
+  </div> -->
+  <!-- <p class="text-dark">{{admindata | json}}</p> -->
 
   

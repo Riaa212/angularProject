@@ -30,14 +30,25 @@ export class AdminService {
   return this.http.put(this.baseurl+"/updateAdmin/"+id,admin)
  }
 
- updateProfile(admin:FormData)
+ updateProfile(admin:any)
  {
-  return this.http.post(this.baseurl+"/updateProfile",admin,{
+  return this.http.post(this.baseurl+"/updateProfileData",admin,{
     // headers: { 'Content-Type': 'application/json' }
     // // 'Content-Type': 'application/json'
-    headers: new HttpHeaders(),
   })
  }
+
+ updateAdminPhoto(image:FormData):Observable<any>
+ {
+// const  headers= new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+// headers.append('Content-Type','multipart/form-data');
+ return this.http.post<any>(this.baseurl+"/updateProfile",image
+  // {
+  //   headers
+  // }
+ )
+ }
+
  sentOtp(email:any)
  {
   return this.http.get(this.baseurl+"/testOtp/"+email)

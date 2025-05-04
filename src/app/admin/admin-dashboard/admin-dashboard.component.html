@@ -48,7 +48,19 @@
             </button>
           </div>
           <button  class="btn text-light" style="background-color: #103783;" (click)="reset()">Reset</button>
-          <button  class="btn text-light" style="background-color: #103783;" (click)="downlodUserReports()">Download Reports </button>
+          <!-- <button  class="btn text-light" style="background-color: #103783;" (click)="downlodUserReports()">Download Reports </button> -->
+          <div class="dropdown">
+            <button class="btn dropdown-toggle text-light" style="background-color: #103783;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Download Reports
+            </button>
+            <ul class="dropdown-menu">
+              <li style="cursor: pointer;"><a class="dropdown-item" (click)="downlodUserReports()"> 
+                <i class="bi bi-file-earmark-spreadsheet-fill" style="color: #09cd44;font-size: 18px;"></i> Excel </a></li>
+              <li style="cursor: pointer;">
+                <a class="dropdown-item" (click)="downloadPdf()">
+                  <i class="bi bi-filetype-pdf" style="color: rgb(211, 5, 5);font-size: 18px;"></i> Pdf </a></li>
+            </ul>
+          </div>
         </div>
         <br>
         <div class="row">
@@ -57,9 +69,10 @@
           </div>
           <div class="col-md-6 text-end">
            <h5><b>Total User: {{userData.totalElements}}</b></h5>
+           <!-- {{userData.content.length}} -->
           </div>
         </div>
-        {{totalUser}}
+
         <!-- {{userData.numberOfElements }} -->
          <!-- {{getsearchUserData.numberOfElements}} -->
       <table *ngIf="userData?.content?.length > 0; else noData">
@@ -74,12 +87,22 @@
         </thead>
         <tbody>
           <!-- <tr><input type="text" class="w-100 form-control"></tr> -->
-          <tr *ngFor="let user of userData.content;index as i">
+          <tr *ngFor="let user of userData.content|filter:searchUserData;index as i">
             <!-- filter:searchUserData -->
             <td>{{i+1}}</td>
             <td>
               <ng-container *ngIf="user.userImg else aliasBlock">
                 <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt="">
+                
+                <div style="background-color: #09cd44;border-radius: 50%;width: 15px;height: 15px;
+                position: relative;bottom: 90px;left:80px
+                " *ngIf="user.isActive==true">
+                </div>
+
+                <div style="background-color:rgb(233, 5, 5);border-radius: 50%;width: 15px;height: 15px;
+                position: relative;bottom: 90px;left:80px
+                " *ngIf="user.isActive==false">
+                </div>
                 <!-- <img [src]="user.userImg" style="border-radius: 50%;height: 100px;width:100px;" alt=""> -->
                 <!-- <img [src]="'data:image/png;base64,' + s.fileData" alt="profile" class="avatar-img" (error)="s.fileData = null" /> -->
               </ng-container>
@@ -151,7 +174,7 @@
       <li class="page-item"><a class="page-link">{{pageIndex + 1 }} of {{userData.totalPages}} pages</a></li>
       <li class="page-item">
         <!-- {{userData.last}} -->
-        <a class="page-link" aria-label="Next" (click)="OnNext()" [class.disabled]="userData.last==true">
+        <a class="page-link" style="cursor: pointer;" aria-label="Next" (click)="OnNext()" [class.disabled]="userData.last==true">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

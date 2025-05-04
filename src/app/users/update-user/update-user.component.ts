@@ -55,4 +55,13 @@ export class UpdateUserComponent {
     // this.route.navigate(['/dashboard'])
   }
 
+  getInitials(fullName: string): string {
+    if (!fullName) return '';
+    const words = fullName.trim().split(' ');
+    let initials = words[0]?.charAt(0).toUpperCase();
+    if (words.length > 1) {
+    initials += words[1]?.charAt(0).toUpperCase();
+    }
+    return initials;
+    }
 }

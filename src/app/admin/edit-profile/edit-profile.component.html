@@ -1,0 +1,60 @@
+
+  <!-- <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!-- <title>Edit Profile - Dark Theme</title> -->
+
+
+  <div class="container-fuild" style="background: #f1f3f6;height: 100%;">
+
+  <!-- Navbar -->
+  <div class="navbar" style="background-color: #103783;">
+    <ul>
+      <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
+      <li><a href="#">logout</a></li>
+    </ul>
+  </div>
+    <!-- Edit Profile Section -->
+  <div class="edit-profile-container">
+    <button class="btn" style="border-radius: 50%; height: 46px;width: 46px;">
+        <a href="" class="text-decoration-none" routerLink="/adminProfile">
+          <i class="bi bi-arrow-left-circle-fill"  style="font-size: 32px;color: #103783;"></i>
+        </a>
+        </button>
+    <h2>Edit Profile</h2>
+    <!-- <form [formGroup]="inputData" (ngSubmit)="updateAdminPhoto()">
+        <input type="file" class="btn btn-primary" (change)="onFileSelected($event)" accept="image/*" />
+      
+        <button type="submit">Update Photo</button>
+      </form> -->
+    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()" enctype="multipart/form-data">
+      <div class="col-md-3 w-100 text-center">
+        <img [src]="admindata.profilePic" style="height:200px;width:200px;border-radius: 20px;" alt="User Image" class="profile-image">
+      </div>
+      <div>
+
+        <!-- <input type="file" (change)="onFileSelected($event)" accept="image/*"> -->
+        <label for="image">Select Image:</label>
+        <input type="file" id="image" (change)="onFileSelected($event)" class="form-control">
+      
+        <!-- <button type="submit" (click)="updateAdminPhoto()">Update Photo</button> -->
+      </div>
+      <div class="col-md-auto">
+      <label for="editName">Full Name</label>
+      <input type="text" id="editName"  placeholder="Enter your name" formControlName="userName" [(ngModel)]="admindata.userName">
+
+      <label for="editEmail">Email</label>
+      <input type="email" id="editEmail"  placeholder="Enter your email" formControlName="email" [(ngModel)]="admindata.email">
+
+      <label for="editEmail">Role</label>
+      <input type="text"  [value]="admindata.role" [readOnly]="true">
+      <!-- <label for="editProfilePic">Profile Picture</label>
+      <input type="file" id="editProfilePic" name="profilePic"> -->
+
+      <button type="submit" style="background-color: #103783;" class="w-100">Save Changes</button>
+    </div>
+    </form>
+  </div>
+  </div>
+  <!-- <p class="text-dark">{{admindata | json}}</p> -->
+
+  
