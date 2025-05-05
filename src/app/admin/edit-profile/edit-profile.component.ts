@@ -35,7 +35,7 @@ export class EditProfileComponent implements OnInit
     // aid:[1],
     email:['', Validators.required],  // Role with default value 'USER'
     userName:['', Validators.required],  // Username required
-    image: [null, Validators.required] 
+    // image: [null, Validators.required] 
   })
   }
   ngOnInit() {
@@ -83,11 +83,13 @@ export class EditProfileComponent implements OnInit
   }
   
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
+    const file:File = event.target.files[0];
+    // console.log("file type==="+file.type)
     if (file) {
       const formData = new FormData();
       formData.append('image', file);
   
+
       this.adminservice.updateAdminPhoto(formData).subscribe({
         next: (res) => {
           console.log('Upload successful', res);
