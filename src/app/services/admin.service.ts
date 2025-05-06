@@ -38,11 +38,11 @@ export class AdminService {
   })
  }
 
- updateAdminPhoto(image:any):Observable<any>
+ updateAdminPhoto(image:FormData):Observable<any>
  {
-const  headers= new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+// const  headers= new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
 // headers.append('Content-Type','multipart/form-data');
- return this.http.post<any>(this.baseurl+"/updateProfile",image,{headers}
+ return this.http.post<any>(this.baseurl+"/updateProfile",image
  )
  }
 

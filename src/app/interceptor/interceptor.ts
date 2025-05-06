@@ -19,7 +19,7 @@ export class Interceptor implements HttpInterceptor
           request = request.clone({
             setHeaders: {
               'Authorization': `Bearer ${currentUser}`,
-              'Content-Type': 'application/json', // You can add other headers if necessary
+              // 'Content-Type': 'application/json', // You can add other headers if necessary
             }
           });
         }

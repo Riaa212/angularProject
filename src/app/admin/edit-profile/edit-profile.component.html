@@ -26,7 +26,7 @@
       
         <button type="submit">Update Photo</button>
       </form> -->
-    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()" enctype="multipart/form-data">
+    <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()">
       <div class="col-md-3 w-100 text-center">
         <img [src]="admindata.profilePic" style="height:200px;width:200px;border-radius: 20px;" alt="User Image" class="profile-image">
       </div>
@@ -55,6 +55,7 @@
     </form>
   </div>
   </div>
+  <!-- <p>{{admindata | json}}</p> -->
   <!-- <p class="text-dark">{{admindata | json}}</p> -->
 
   

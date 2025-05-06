@@ -82,24 +82,33 @@ export class EditProfileComponent implements OnInit
     // } 
   }
   
+  rs:any
   onFileSelected(event: any): void {
     const file:File = event.target.files[0];
     // console.log("file type==="+file.type)
     if (file) {
       const formData = new FormData();
       formData.append('image', file);
-  
 
-      this.adminservice.updateAdminPhoto(formData).subscribe({
-        next: (res) => {
-          console.log('Upload successful', res);
-          alert('Profile photo updated successfully!');
-        },
-        error: (err) => {
-          console.error('Upload failed:', err);
-          alert('Failed to upload profile photo.');
-        }
-      });
+      
+      this.adminservice.updateAdminPhoto(formData).subscribe((res)=>{
+        this.rs=res
+        // this.admindata.profilePic = res;
+        alert('profile photo updated successfully')
+        // location.reload()
+        location.reload()
+      }
+        // {
+        // next: (res) => {
+        //   console.log('Upload successful', res);
+        //   alert('Profile photo updated successfully!');
+        // },
+        // error: (err) => {
+        //   console.error('Upload failed:', err);
+        //   alert('Failed to upload profile photo.');
+        // }
+      // }
+    );
     }
   }
   

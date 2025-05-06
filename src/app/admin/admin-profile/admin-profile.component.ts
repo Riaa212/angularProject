@@ -26,6 +26,7 @@ export class AdminProfileComponent {
   constructor(private route: ActivatedRoute,private fb:FormBuilder)
   {
    this.adminemail=this.loginstore.getLoginData("userName")
+   
    this.getAdminByEmail()
    this.adminid = this.route.snapshot.paramMap.get('id');
     console.log("adid"+this.adminid+"\n admindata"+this.admindata)
