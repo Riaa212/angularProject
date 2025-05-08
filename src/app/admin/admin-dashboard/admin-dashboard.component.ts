@@ -22,6 +22,9 @@ export class AdminDashboardComponent {
 
   totalRecords: number = 0;
   pageSize: number = 10;
+
+  page:number[]=[5,10,15]
+  records:number | undefined
   pageIndex: number = -1;
   previous:number=0
   next:number=0
@@ -32,6 +35,7 @@ export class AdminDashboardComponent {
   totalUser:any
 
   noData:any
+  
   constructor(private loginstore:LoginService,private fb:FormBuilder,private http:HttpClient)
   {
     // this.getAllUsers()
@@ -102,7 +106,11 @@ export class AdminDashboardComponent {
     }
     )
   }
-
+  // basedOnRecord(val:any)
+  // {
+  //   this.records=val
+  //   console.log("\n"+this.records)
+  // }
   //reset after search
   reset(){
     location.reload()

@@ -47,6 +47,22 @@
               <i class="bi bi-search"></i>  <!-- This shows a search icon -->
             </button>
           </div>
+          <div class="dropdown">
+            <!-- <button class="btn dropdown-toggle text-dark" style="background-color: #e3edf8;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Records
+              
+            </button> -->
+            <!-- <ul class="dropdown-menu">
+              <li style="cursor: pointer;" *ngFor="let Record of page" (change)="basedOnRecord($event)">
+                <a class="dropdown-item"> 
+                {{Record}}
+                </a>
+              </li>
+            </ul> -->
+            <!-- <select [(ngModel)]="page" #val  id="fruits" (change)="basedOnRecord(val)">
+              <option *ngFor="let Record of page" >{{Record}}</option>
+           </select> -->
+          </div>
           <button  class="btn text-light" style="background-color: #103783;" (click)="reset()">Reset</button>
           <!-- <button  class="btn text-light" style="background-color: #103783;" (click)="downlodUserReports()">Download Reports </button> -->
           <div class="dropdown">
@@ -68,7 +84,7 @@
             <h5> Registered Users</h5>
           </div>
           <div class="col-md-6 text-end">
-           <h5><b>Total User: {{userData.totalElements}}</b></h5>
+           <h5><b>Total User: {{userData.page.totalElements}}</b></h5>
            <!-- {{userData.content.length}} -->
           </div>
         </div>
@@ -171,7 +187,8 @@
           <!-- <span class="sr-only">Previous</span> -->
         </a>
       </li>
-      <li class="page-item"><a class="page-link">{{pageIndex + 1 }} of {{userData.totalPages}} pages</a></li>
+      <li class="page-item"><a class="page-link">{{pageIndex + 1 }} of {{userData.page.totalPages}} pages</a></li>
+      <!-- <li class="page-item"><a class="page-link">{{pageIndex + 1 }} of {{userData.page.totalPages}} pages</a></li> -->
       <li class="page-item">
         <!-- {{userData.last}} -->
         <a class="page-link" style="cursor: pointer;" aria-label="Next" (click)="OnNext()" [class.disabled]="userData.last==true">
@@ -185,7 +202,8 @@
         </p> -->
         <p style="display: flex; position: absolute;right:250px">
           <!-- Total Pages:{{userData.totalPages}} -->
-          <b> Total Records:{{userData.numberOfElements}} </b>
+          <!-- <b> Total Records:{{userData.numberOfElements}} </b> -->
+          <b> Total Records:{{userData.page.size}} </b>
         </p>
         <p>
           <!-- {{getsearchUserData.totalElements | json}} -->
