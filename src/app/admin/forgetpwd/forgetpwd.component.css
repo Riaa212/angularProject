@@ -39,7 +39,7 @@
     transform: scale(1.1);
   }
   
-.container {
+  .container-fuild{
     display: flex;
     height: 100vh;
     justify-content: center;

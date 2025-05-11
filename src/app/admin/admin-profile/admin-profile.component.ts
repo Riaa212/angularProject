@@ -23,6 +23,7 @@ export class AdminProfileComponent {
   rout=inject(Router)
   // uploadForm: any;
   imageUrl: any;
+  
   constructor(private route: ActivatedRoute,private fb:FormBuilder)
   {
    this.adminemail=this.loginstore.getLoginData("userName")

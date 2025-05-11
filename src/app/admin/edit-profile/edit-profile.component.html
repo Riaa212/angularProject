@@ -7,17 +7,18 @@
   <div class="container-fuild" style="background: #f1f3f6;height: 100%;">
 
   <!-- Navbar -->
-  <div class="navbar" style="background-color: #103783;">
+  <!-- <div class="navbar" style="background-color: #103783;">
     <ul>
       <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
       <li><a href="#">logout</a></li>
     </ul>
-  </div>
+  </div> -->
+  <app-navbar></app-navbar>
     <!-- Edit Profile Section -->
   <div class="edit-profile-container">
     <button class="btn" style="border-radius: 50%; height: 46px;width: 46px;">
         <a href="" class="text-decoration-none" routerLink="/adminProfile">
-          <i class="bi bi-arrow-left-circle-fill"  style="font-size: 32px;color: #103783;"></i>
+          <i class="bi bi-arrow-left-circle-fill text-primary"  style="font-size: 32px;"></i>
         </a>
         </button>
     <h2>Edit Profile</h2>
@@ -28,7 +29,7 @@
       </form> -->
     <form id="editProfileForm" [formGroup]="inputData" (ngSubmit)="updateAdminById()">
       <div class="col-md-3 w-100 text-center">
-        <img [src]="admindata.profilePic" style="height:200px;width:200px;border-radius: 20px;" alt="User Image" class="profile-image">
+        <img [src]="admindata.profilePic" style="height:200px;width:200px;border-radius: 50%" alt="User Image" class="profile-image">
       </div>
       <div>
 
@@ -50,7 +51,7 @@
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 
-      <button type="submit" style="background-color: #103783;" class="w-100">Save Changes</button>
+      <button type="submit" class="w-100 bg-primary">Save Changes</button>
     </div>
     </form>
   </div>

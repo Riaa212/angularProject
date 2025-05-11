@@ -1,0 +1,14 @@
+<div class="navbar bg-primary" >
+    <ul> 
+        <!-- *ngIf="isLoggedIn()" -->
+      <li ><a routerLink="/dashboard">Dashboard</a></li>
+      <li ><a href="#" routerLink="/adminProfile">Profile
+        <!-- <i class="animate-spin fas fa-cog"></i> -->
+      </a></li>
+      <li >
+        <a href="#" class="btn-link" (click)="logout()">Logout</a></li>
+        <!-- <li>
+            <img class="avatar" [src]="admindata.profilePic" />
+        </li> -->
+    </ul>
+  </div>

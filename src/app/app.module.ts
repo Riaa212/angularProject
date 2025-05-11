@@ -18,6 +18,7 @@ import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './admin/register/register.component';
 import { EditProfileComponent } from './admin/edit-profile/edit-profile.component';
+import { NavbarComponent } from './header/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { EditProfileComponent } from './admin/edit-profile/edit-profile.componen
     FilterPipe,
     RegisterComponent,
     EditProfileComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

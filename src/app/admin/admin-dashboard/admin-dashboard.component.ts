@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 // import { LoginStorage } from '../../login-storage';
 import { Router } from '@angular/router';
 import { LoginService } from '../../login.service';
@@ -12,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit
+{
 
   // loginstore=inject(LoginStorage)
   route=inject(Router)
@@ -23,7 +24,6 @@ export class AdminDashboardComponent {
   totalRecords: number = 0;
   pageSize: number = 10;
 
-  page:number[]=[5,10,15]
   records:number | undefined
   pageIndex: number = -1;
   previous:number=0
@@ -34,8 +34,19 @@ export class AdminDashboardComponent {
 
   totalUser:any
 
+  totalactiveUsers:number | undefined
   noData:any
+  allUsers: any[] = []; 
+  filteredUsers: any[] = [];
+  showActiveOnly = false;
   
+
+  page: number[] = [5, 10, 15]; // dropdown option
+  totalPages: any;
+  pagesArray: number[]=[];
+
+
+
   constructor(private loginstore:LoginService,private fb:FormBuilder,private http:HttpClient)
   {
     // this.getAllUsers()
@@ -46,6 +57,21 @@ export class AdminDashboardComponent {
     // })
     this.searchUser()
   }
+
+  ngOnInit() {
+    // this.allUsers= this.OnNext(); // Replace with real HTTP call
+    this.filteredUsers = this.allUsers;
+  }
+  
+
+  onCheckboxChange() {
+    if (this.showActiveOnly) {
+      this.filteredUsers = this.allUsers.filter(user => user.isActive);
+    } else {
+      this.filteredUsers = this.allUsers;
+    }
+  }
+
   logout(){
 
     const tocken=this.loginstore.getLoginData('token');
@@ -58,11 +84,6 @@ export class AdminDashboardComponent {
     }
   }
 
-  // getAllUsers()
-  // {
-    
-  //   this.userService.getAllUsers().subscribe((rs)=>this.userData=rs)
-  // }
 
   deleteById(userid:number){
     this.userService.deleteUserById(userid).subscribe();
@@ -71,46 +92,85 @@ export class AdminDashboardComponent {
     location.reload()
   }
 
-  Onprevious()
-  {
-    this.pageIndex--
-    this.previous=this.pageIndex
-    // console.log(this.previous)
-    this.userService.getAllUsers(this.previous,this.pageSize).subscribe(a=>this.userData=a)
-  }
-
   OnNext()
   {
     if(this.storage.getLoginData('token'))
     {
     this.pageIndex++
     this.next=this.pageIndex
-
     this.userService.getAllUsers(this.next,this.pageSize).subscribe(a=>
       {
         this.userData=a
-        // this.totalUser=this.userData.numberOfElements
+        this.allUsers = this.userData.content;
+        this.totalPages =this.userData.pageble.totalPages;
+        // this.totalPages=this.userData.pageable.totalPages;
+        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i);
+        this.onCheckboxChange();
+        // this.allUsers=this.userData.content
       })
     }
   }
+  
+  Onprevious()
+  {
+    this.pageIndex--
+    this.previous=this.pageIndex
+    // console.log(this.previous)
+    this.userService.getAllUsers(this.previous,this.pageSize).subscribe(a=>
+      {
+        this.userData=a
+        this.allUsers = this.userData.content;
+        this.totalPages =this.userData.pageble.totalPages;
+        // this.totalPages=this.userData.pageable.totalPages;
+        this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i);
+        this.onCheckboxChange();
+        // this.allUsers=this.userData.content
+      })
+  }
 
+  // loadUsers()
+  // {
+  //   this.userService.getAllUsers(this.previous,this.pageSize).subscribe(a=>
+  //     {
+  //       this.userData=a
+  //       this.allUsers = this.userData.content;
+  //       this.totalPages =this.userData.pageble.totalPages;
+  //       // this.totalPages=this.userData.pageable.totalPages;
+  //       this.pagesArray = Array.from({ length: this.totalPages }, (_, i) => i);
+  //       this.onCheckboxChange();
+  //       // this.allUsers=this.userData.content
+  //     })
+  // }
+
+  // goToPage(page: number) {
+  //   this.pageIndex = page;
+  //   this.loadUsers();
+  // }
+  
+
+  onChangePageSize(newSize: number) {
+    this.pageSize = newSize;
+    this.pageIndex = -1;
+    this.OnNext(); // ya jo bhi method fetch karta hai new data
+  }
+  
+
+  onPageSizeChange() {
+    this.pageIndex = -1;
+    // this.OnNext();
+    // this.loadUsers();
+  }
+  
   searchUser()
   {
     this.userService.searchUser(this.searchUserData,this.previous,this.pageSize).subscribe(a=>
     {
-      // this.getsearchUserData=a
-      // this.totalUser=this.getsearchUserData.totalElements
-      // console.log(this.getsearchUserData.numberOfElements)
       this.userData=a
       console.log(a)
     }
     )
   }
-  // basedOnRecord(val:any)
-  // {
-  //   this.records=val
-  //   console.log("\n"+this.records)
-  // }
+
   //reset after search
   reset(){
     location.reload()
@@ -148,10 +208,6 @@ downloadPdf(){
   });
 }
 
-  updateAdminData()
-  {
-      
-  }
 
   //for live search 
   getInitials(fullName: string): string {
@@ -162,6 +218,10 @@ downloadPdf(){
     initials += words[1]?.charAt(0).toUpperCase();
     }
     return initials;
-    }
+    }  
+
+
+
+
 }
 

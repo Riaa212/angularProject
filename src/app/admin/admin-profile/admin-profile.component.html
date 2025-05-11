@@ -1,12 +1,7 @@
 
 
 <!-- Navbar -->
-<div class="navbar" style="background-color: #103783;">
-  <ul>
-    <li><a href="#" routerLink="/dashboard">Dashboard</a></li>
-    <li><a href="#">logout</a></li>
-  </ul>
-</div>
+ <app-navbar></app-navbar>
 <body>
 
 
@@ -22,7 +17,7 @@
       <p><strong>Role:</strong> {{admindata.role}}</p>
     </div>
 
-    <button class="edit-button">
+    <button class="edit-button bg-primary">
       <a routerLink="/updateAdmin" class="text-light text-decoration-none">Edit Profile</a>
     </button>
 
