@@ -82,7 +82,7 @@
     }
 
     /* Button Styles */
-    .edit-profile-container button {
+    .update-btn {
       width: auto;
       padding: 12px;
       /* background-color: #34acf1; */
@@ -94,7 +94,31 @@
       /* transition: background-color 0.3s ease, transform 0.2s ease; */
     }
 
-    .edit-profile-container button:hover {
+    .update-btn:hover {
       /* background-color: #34acf1; */
       transform: scale(1.05);
     }
+
+          /* back button style */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.back-btn i {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.back-btn:hover {
+  color: #0056d2;
+}

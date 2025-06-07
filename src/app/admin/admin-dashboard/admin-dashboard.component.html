@@ -20,43 +20,31 @@
         <div class="d-flex">
           <div class="search-container">
             <input type="text" placeholder="Search..." class="search-input search-box" [(ngModel)]="searchUserData" />
-            <button class="search-btn bg-primary" (click)="searchUser()">
+            <button class="search-btn" style="background-color: #0056d2;" (click)="searchUser()">
               <i class="bi bi-search"></i>  <!-- This shows a search icon -->
             </button>
           </div>
-          <!-- <div class="dropdown">
+          <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Records
+                 {{ pageSize || 'Select Page Size' }}
             </button>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a></a>
-              </li>
-                <a class="dropdown-item" href="#">Action</a>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+            <!-- <ul class="dropdown-menu" role="menu" [(ngModel)]="pageSize" (change)="onChangePageSize(pageSize)">
               <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div> -->
-          
+            </ul>             -->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li *ngFor="let p of page">
+        <a class="dropdown-item" [routerLink]="['/dashboard']" (click)="onChangePageSize(p)">
+        {{ p }}
+        </a>
+      </li>
+  </ul>
+  </div>
+ 
           <!-- <div>
-          <ul class="nav nav-pills">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          </div> -->
-          <div>
             <select class="form-select" [(ngModel)]="pageSize" (change)="onChangePageSize(pageSize)">
               <option *ngFor="let p of page" [value]="p">{{ p }}</option>
             </select>
-          </div>
+          </div> -->
           <button  class="btn text-light bg-primary" (click)="reset()">Reset</button>
           <!-- <button  class="btn text-light" style="background-color: #103783;" (click)="downlodUserReports()">Download Reports </button> -->
           
@@ -393,3 +381,6 @@
 <!-- <button type="button" class="btn btn-primary ...">
   <i class="animate-spin fas fa-cog"></i>
 </button> -->
+<!-- <p>
+  {{userData | json}}
+</p> -->

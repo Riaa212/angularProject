@@ -5,6 +5,8 @@ import { LoginService } from '../../login.service';
 import { UserService } from '../../services/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -85,12 +87,67 @@ export class AdminDashboardComponent implements OnInit
   }
 
 
-  deleteById(userid:number){
-    this.userService.deleteUserById(userid).subscribe();
-    // console.log(userid)
-    alert('user deleted successfully')
-    location.reload()
-  }
+  // deleteById(userid:number){
+  //   this.userService.deleteUserById(userid).subscribe();
+  //   // console.log(userid)
+  //   alert('user deleted successfully')
+  //   location.reload()
+  // }
+
+  deletePopup()
+  {
+
+//    const swalWithBootstrapButtons = Swal.mixin({
+//   customClass: {
+//     confirmButton: "btn btn-success",
+//     cancelButton: "btn btn-danger"
+//   },
+//   buttonsStyling: false
+// });
+// swalWithBootstrapButtons.fire({
+//   title: "Are you sure?",
+//   text: "You won't be able to revert this!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonText: "Yes, delete it!",
+//   cancelButtonText: "No, cancel!",
+//   reverseButtons: true
+// }).then((result) => {
+//   if (result.isConfirmed) {
+//     swalWithBootstrapButtons.fire({
+//       title: "Deleted!",
+//       text: "Your file has been deleted.",
+//       icon: "success"
+//     });
+//   } else if (
+//     /* Read more about handling dismissals below */
+//     result.dismiss === Swal.DismissReason.cancel
+//   ) {
+//     swalWithBootstrapButtons.fire({
+//       title: "Cancelled",
+//       text: "Your imaginary file is safe :)",
+//       icon: "error"
+//     });
+//   }
+// });
+
+    Swal.fire({
+  title: "Deleted successfully!",
+  text: "You clicked the button!",
+  icon: "success",
+  confirmButtonColor: "#4CAF50",
+   timer: 1500
+}).then(() => {
+    location.reload(); // Refresh page after popup closes
+  });
+}
+
+
+  deleteById(userId: number) {
+  this.userService.deleteUserById(userId).subscribe();
+        this.deletePopup();
+}
+
 
   OnNext()
   {
@@ -152,6 +209,7 @@ export class AdminDashboardComponent implements OnInit
     this.pageSize = newSize;
     this.pageIndex = -1;
     this.OnNext(); // ya jo bhi method fetch karta hai new data
+
   }
   
 

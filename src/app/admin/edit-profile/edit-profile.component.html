@@ -1,5 +1,14 @@
 
-  <!-- <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+    <!-- <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <!-- <title>Edit Profile - Dark Theme</title> -->
 
@@ -16,11 +25,14 @@
   <app-navbar></app-navbar>
     <!-- Edit Profile Section -->
   <div class="edit-profile-container">
-    <button class="btn" style="border-radius: 50%; height: 46px;width: 46px;">
+    <!-- <button class="btn" style="border-radius: 50%; height: 46px;width: 46px;">
         <a href="" class="text-decoration-none" routerLink="/adminProfile">
-          <i class="bi bi-arrow-left-circle-fill text-primary"  style="font-size: 32px;"></i>
+          <i class="bi bi-arrow-left-circle-fill" style="color: #103783;"  style="font-size: 32px;"></i>
         </a>
-        </button>
+        </button> -->
+        <button class="back-btn" onclick="history.back()">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
     <h2>Edit Profile</h2>
     <!-- <form [formGroup]="inputData" (ngSubmit)="updateAdminPhoto()">
         <input type="file" class="btn btn-primary" (change)="onFileSelected($event)" accept="image/*" />
@@ -51,7 +63,7 @@
       <!-- <label for="editProfilePic">Profile Picture</label>
       <input type="file" id="editProfilePic" name="profilePic"> -->
 
-      <button type="submit" class="w-100 bg-primary">Save Changes</button>
+      <button type="submit" class="w-100 update-btn" style="background-color: #0056d2;">Save Changes</button>
     </div>
     </form>
   </div>
@@ -60,3 +72,6 @@
   <!-- <p class="text-dark">{{admindata | json}}</p> -->
 
   
+
+</body>
+</html>

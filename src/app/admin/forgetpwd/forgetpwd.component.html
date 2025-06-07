@@ -1,5 +1,5 @@
 
-   <div class="navbar" style="background-color: #103783;">
+   <div class="navbar" style="background-color: #0056d2;">
     <ul>
       <li><a href="#" routerLink="/dashboard">Home</a></li>
     </ul>
@@ -13,7 +13,7 @@
           <label>Email</label>
           <input type="email" formControlName="recipient" required />
         </div>
-        <button type="submit" style="background-color:#103783;">Send OTP</button>
+        <button type="submit" style="background-color:#0056d2;">Send OTP</button>
       </form>
   
       <form [formGroup]="resetForm" (ngSubmit)="onSubmitReset()" *ngIf="showOtpSection" class="fade-in">
@@ -33,12 +33,12 @@
           <input type="password" formControlName="newPassword" />
         </div>
   
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>Confirm Password</label>
           <input type="password" formControlName="confirmPassword" />
-        </div>
+        </div> -->
   
-        <button type="submit" style="background-color: #103783;">Reset Password</button>
+        <button type="submit" style="background-color: #0056d2;">Reset Password</button>
       </form>
     </div>
   </div>

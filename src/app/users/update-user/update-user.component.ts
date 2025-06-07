@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 declare var bootstrap: any;
 
@@ -42,14 +43,32 @@ export class UpdateUserComponent {
     this.userservice.getUserById(this.userId).subscribe((rs)=>this.userdata=rs)
   }
 
+  updateUserPopUp()
+  {
+      Swal.fire({
+      title: "User Updated successfully!",
+      text: "You clicked the button!",
+      icon: "success",
+      confirmButtonColor: "#4CAF50",
+       timer: 1500
+    })
+  }
+
   updateUserById()
   {
-    
     console.log(this.inputData.value)
     this.userservice.updateUserById(this.userId,this.inputData.value).subscribe()
+       Swal.fire({
+      title: "User Updated successfully!",
+      text: "You clicked the button!",
+      icon: "success",
+      confirmButtonColor: "#4CAF50",
+       timer: 1500
+    })
+    
     const modalEl = document.getElementById('successModal');
     const modal = new bootstrap.Modal(modalEl);
-    modal.show();
+    // modal.show();
     // alert('user updated succefully')
 
     // this.route.navigate(['/dashboard'])
@@ -64,4 +83,6 @@ export class UpdateUserComponent {
     }
     return initials;
     }
+
 }
+
